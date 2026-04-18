@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EquipmentInventoryReport year="2024">
+  <Equipment>
+    <SerialNumber>EQ-ARCHIVE-BIKE-01</SerialNumber>
+    <Name>Stationary Bike Classic</Name>
+    <Description>Older model stationary exercise bike</Description>
+    <Category>cardio</Category>
+    <Quantity>4</Quantity>
+    <Status>OUT_OF_SERVICE</Status>
+    <TimesUsedThisYear>0</TimesUsedThisYear>
+    <Location x="0" y="0" shelf="0"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-ARCHIVE-MAT-01</SerialNumber>
+    <Name>Yoga Mat Classic</Name>
+    <Description>Standard 4mm yoga mat</Description>
+    <Category>flexibility</Category>
+    <Quantity>20</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>95</TimesUsedThisYear>
+    <Location x="1" y="6" shelf="1"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-ARCHIVE-DUMBBELL-5</SerialNumber>
+    <Name>Dumbbell 5kg</Name>
+    <Description>Rubber-coated 5kg hex dumbbell</Description>
+    <Category>strength</Category>
+    <Quantity>16</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>88</TimesUsedThisYear>
+    <Location x="3" y="1" shelf="2"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-ARCHIVE-PULLUP-01</SerialNumber>
+    <Name>Pull-Up Bar Wall Mount</Name>
+    <Description>Wall-mounted pull-up bar, steel construction</Description>
+    <Category>strength</Category>
+    <Quantity>2</Quantity>
+    <Status>NON_USABLE</Status>
+    <TimesUsedThisYear>0</TimesUsedThisYear>
+    <Location x="0" y="0" shelf="0"/>
+  </Equipment>
+</EquipmentInventoryReport>

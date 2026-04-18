@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: fitwell.App
+Created-By: 21.0.6 (Eclipse Adoptium)
+

@@ -1,0 +1,50 @@
+{
+  "batchId": "BATCH-SF-2026-03-C",
+  "source": "SwiftFit",
+  "updates": [
+    {
+      "serialNumber": "1222",
+      "newQuantity": 6,
+      "photoUrl": "https://swiftfit.example.com/images/treadmill-1222.jpg",
+      "isNewItem": false,
+      "name": "Treadmill",
+      "category": "cardio",
+      "x": 0,
+      "y": 0,
+      "shelf": 0
+    },
+    {
+      "serialNumber": "1234",
+      "newQuantity": 8,
+      "photoUrl": "",
+      "isNewItem": false,
+      "name": "Elliptical",
+      "category": "strength",
+      "x": 1,
+      "y": 2,
+      "shelf": 4
+    },
+    {
+      "serialNumber": "EQ-SF-FOAMROLLER-01",
+      "newQuantity": 15,
+      "photoUrl": "https://swiftfit.example.com/images/foam-roller.jpg",
+      "isNewItem": true,
+      "name": "Foam Roller Pro",
+      "category": "flexibility",
+      "x": 0,
+      "y": 6,
+      "shelf": 1
+    },
+    {
+      "serialNumber": "EQ-SF-PULLUPBAR-01",
+      "newQuantity": 4,
+      "photoUrl": "",
+      "isNewItem": true,
+      "name": "Pull-Up Bar",
+      "category": "strength",
+      "x": 3,
+      "y": 3,
+      "shelf": 2
+    }
+  ]
+}

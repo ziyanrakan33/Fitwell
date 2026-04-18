@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EquipmentInventoryReport year="2026">
+  <Equipment>
+    <SerialNumber>EQ-SF-TREADMILL-01</SerialNumber>
+    <Name>Commercial Treadmill Pro</Name>
+    <Description>High-performance commercial treadmill with incline controls</Description>
+    <Category>cardio</Category>
+    <Quantity>5</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>8</TimesUsedThisYear>
+    <Location x="1" y="1" shelf="0"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-SF-KETTLEBELL-16</SerialNumber>
+    <Name>Kettlebell 16kg</Name>
+    <Description>Cast iron competition kettlebell 16kg</Description>
+    <Category>strength</Category>
+    <Quantity>12</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>5</TimesUsedThisYear>
+    <Location x="2" y="3" shelf="0"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-SF-YOGAMAT-PRO</SerialNumber>
+    <Name>Premium Yoga Mat</Name>
+    <Description>6mm thick premium non-slip yoga mat</Description>
+    <Category>flexibility</Category>
+    <Quantity>30</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>15</TimesUsedThisYear>
+    <Location x="2" y="5" shelf="2"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-SF-SPINBIKE-02</SerialNumber>
+    <Name>Pro Spin Bike</Name>
+    <Description>Indoor cycling spin bike with resistance adjustment</Description>
+    <Category>cardio</Category>
+    <Quantity>8</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>20</TimesUsedThisYear>
+    <Location x="5" y="1" shelf="0"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-SF-TRXBAND-01</SerialNumber>
+    <Name>TRX Suspension Band</Name>
+    <Description>Full-body suspension training bands</Description>
+    <Category>functional</Category>
+    <Quantity>25</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>18</TimesUsedThisYear>
+    <Location x="1" y="4" shelf="3"/>
+  </Equipment>
+</EquipmentInventoryReport>

@@ -1,0 +1,39 @@
+{
+  "batchId": "BATCH-SF-2026-03-B",
+  "source": "SwiftFit",
+  "updates": [
+    {
+      "serialNumber": "EQ-SF-KETTLEBELL-16",
+      "newQuantity": 12,
+      "photoUrl": "https://swiftfit.example.com/images/kettlebell-16.jpg",
+      "isNewItem": true,
+      "name": "Kettlebell 16kg",
+      "category": "strength",
+      "x": 2,
+      "y": 3,
+      "shelf": 0
+    },
+    {
+      "serialNumber": "EQ-SF-SPINBIKE-02",
+      "newQuantity": 8,
+      "photoUrl": "https://swiftfit.example.com/images/spin-bike-02.jpg",
+      "isNewItem": false,
+      "name": "Pro Spin Bike",
+      "category": "cardio",
+      "x": 5,
+      "y": 1,
+      "shelf": 0
+    },
+    {
+      "serialNumber": "EQ-SF-TRXBAND-01",
+      "newQuantity": 25,
+      "photoUrl": "",
+      "isNewItem": true,
+      "name": "TRX Suspension Band",
+      "category": "functional",
+      "x": 1,
+      "y": 4,
+      "shelf": 3
+    }
+  ]
+}

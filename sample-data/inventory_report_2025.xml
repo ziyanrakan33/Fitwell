@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EquipmentInventoryReport year="2025">
+  <Equipment>
+    <SerialNumber>1222</SerialNumber>
+    <Name>Treadmill</Name>
+    <Description>Standard fitness treadmill, belt drive system</Description>
+    <Category>cardio</Category>
+    <Quantity>6</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>48</TimesUsedThisYear>
+    <Location x="0" y="0" shelf="0"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>1234</SerialNumber>
+    <Name>Elliptical</Name>
+    <Description>Low-impact elliptical cross-trainer</Description>
+    <Category>strength</Category>
+    <Quantity>5</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>30</TimesUsedThisYear>
+    <Location x="1" y="2" shelf="4"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-D-1773952648353-1</SerialNumber>
+    <Name>Rowing Machine Pro</Name>
+    <Description>Air-resistance professional rowing machine</Description>
+    <Category>other</Category>
+    <Quantity>1</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>12</TimesUsedThisYear>
+    <Location x="7" y="0" shelf="1"/>
+  </Equipment>
+  <Equipment>
+    <SerialNumber>EQ-D-1773952648367-2</SerialNumber>
+    <Name>Smith Machine Pro</Name>
+    <Description>Guided barbell strength training machine</Description>
+    <Category>other</Category>
+    <Quantity>5</Quantity>
+    <Status>IN_SERVICE</Status>
+    <TimesUsedThisYear>22</TimesUsedThisYear>
+    <Location x="3" y="0" shelf="1"/>
+  </Equipment>
+</EquipmentInventoryReport>

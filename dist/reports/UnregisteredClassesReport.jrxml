@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="UnregisteredClassReport"
+              pageWidth="595" pageHeight="842"
+              columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20"
+              uuid="eb606af5-530b-4613-b946-342aec4293e3">
+
+  <parameter name="DATE_FROM" class="java.sql.Date">
+    <defaultValueExpression><![CDATA[new java.sql.Date(new java.util.GregorianCalendar(2025,11,1).getTimeInMillis())]]></defaultValueExpression>
+  </parameter>
+  <parameter name="DATE_TO" class="java.sql.Date">
+    <defaultValueExpression><![CDATA[new java.sql.Date(new java.util.GregorianCalendar(2026,1,1).getTimeInMillis())]]></defaultValueExpression>
+  </parameter>
+
+  <queryString>
+    <![CDATA[SELECT
+    t.ID        AS traineeID,
+    t.firstName AS firstName,
+    t.lastName  AS lastName,
+    t.phone     AS phone,
+    t.email     AS email,
+    COUNT(r.classID) AS attendedCount
+FROM TblTrainee t
+LEFT JOIN TblClassRegistration r
+    ON r.traineeID = t.ID
+    AND r.registrationDate >= $P{DATE_FROM}
+    AND r.registrationDate <  $P{DATE_TO}
+GROUP BY
+    t.ID, t.firstName, t.lastName, t.phone, t.email
+HAVING
+    COUNT(r.classID) < 7
+ORDER BY
+    attendedCount ASC, t.lastName, t.firstName]]>
+  </queryString>
+
+  <field name="traineeID"    class="java.lang.Integer"/>
+  <field name="firstName"    class="java.lang.String"/>
+  <field name="lastName"     class="java.lang.String"/>
+  <field name="phone"        class="java.lang.String"/>
+  <field name="email"        class="java.lang.String"/>
+  <field name="attendedCount" class="java.lang.Long"/>
+
+  <variable name="ROW_NUM" class="java.lang.Integer" resetType="Report" calculation="Count">
+    <variableExpression><![CDATA[$F{traineeID}]]></variableExpression>
+  </variable>
+
+  <background><band splitType="Stretch"/></background>
+
+  <!-- ── TITLE ─────────────────────────────────────────────────────── -->
+  <title>
+    <band height="90" splitType="Stretch">
+      <!-- Dark header bar -->
+      <rectangle>
+        <reportElement x="0" y="0" width="555" height="70" backcolor="#1A2B4A" forecolor="#1A2B4A" uuid="hdr-bg"/>
+        <graphicElement>
+          <pen lineWidth="0.0"/>
+        </graphicElement>
+      </rectangle>
+      <!-- App name -->
+      <staticText>
+        <reportElement x="10" y="8" width="200" height="22" forecolor="#7BA7D4" uuid="app-name"/>
+        <textElement><font fontName="SansSerif" size="11" isBold="true"/></textElement>
+        <text><![CDATA[FitWell Management System]]></text>
+      </staticText>
+      <!-- Report title -->
+      <staticText>
+        <reportElement x="10" y="32" width="400" height="28" forecolor="#FFFFFF" uuid="rpt-title"/>
+        <textElement><font fontName="SansSerif" size="18" isBold="true"/></textElement>
+        <text><![CDATA[Low Attendance Report]]></text>
+      </staticText>
+      <!-- Date range -->
+      <textField>
+        <reportElement x="10" y="75" width="555" height="14" forecolor="#555555" uuid="date-range"/>
+        <textElement><font fontName="SansSerif" size="9"/></textElement>
+        <textFieldExpression><![CDATA["Period: " + $P{DATE_FROM} + "  →  " + $P{DATE_TO} + "   |   Trainees with fewer than 7 attended classes"]]></textFieldExpression>
+      </textField>
+    </band>
+  </title>
+
+  <!-- ── PAGE HEADER ──────────────────────────────────────────────── -->
+  <pageHeader>
+    <band height="6" splitType="Stretch"/>
+  </pageHeader>
+
+  <!-- ── COLUMN HEADER ────────────────────────────────────────────── -->
+  <columnHeader>
+    <band height="30" splitType="Stretch">
+      <!-- Header background -->
+      <rectangle>
+        <reportElement x="0" y="0" width="555" height="30" backcolor="#2C3E6B" forecolor="#2C3E6B" uuid="col-hdr-bg"/>
+        <graphicElement><pen lineWidth="0.0"/></graphicElement>
+      </rectangle>
+      <staticText>
+        <reportElement x="0"   y="0" width="40"  height="30" forecolor="#FFFFFF" uuid="h0"/>
+        <textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <text><![CDATA[#]]></text>
+      </staticText>
+      <staticText>
+        <reportElement x="40"  y="0" width="110" height="30" forecolor="#FFFFFF" uuid="h1"/>
+        <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <text><![CDATA[  First Name]]></text>
+      </staticText>
+      <staticText>
+        <reportElement x="150" y="0" width="110" height="30" forecolor="#FFFFFF" uuid="h2"/>
+        <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <text><![CDATA[  Last Name]]></text>
+      </staticText>
+      <staticText>
+        <reportElement x="260" y="0" width="100" height="30" forecolor="#FFFFFF" uuid="h3"/>
+        <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <text><![CDATA[  Phone]]></text>
+      </staticText>
+      <staticText>
+        <reportElement x="360" y="0" width="145" height="30" forecolor="#FFFFFF" uuid="h4"/>
+        <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <text><![CDATA[  Email]]></text>
+      </staticText>
+      <staticText>
+        <reportElement x="505" y="0" width="50"  height="30" forecolor="#FFFFFF" uuid="h5"/>
+        <textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <text><![CDATA[Attended]]></text>
+      </staticText>
+    </band>
+  </columnHeader>
+
+  <!-- ── DETAIL ────────────────────────────────────────────────────── -->
+  <detail>
+    <band height="24" splitType="Stretch">
+      <!-- Alternating row background (even rows slightly lighter) -->
+      <rectangle>
+        <reportElement x="0" y="0" width="555" height="24"
+                       backcolor="#F0F4FA" forecolor="#F0F4FA" uuid="row-bg-even"
+                       mode="Opaque" isPrintWhenDetailOverflows="false">
+          <printWhenExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0]]></printWhenExpression>
+        </reportElement>
+        <graphicElement><pen lineWidth="0.0"/></graphicElement>
+      </rectangle>
+
+      <textField>
+        <reportElement x="0"   y="0" width="40"  height="24" uuid="d0"/>
+        <textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" size="9"/></textElement>
+        <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+      </textField>
+      <textField isBlankWhenNull="true">
+        <reportElement x="40"  y="0" width="110" height="24" uuid="d1"/>
+        <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="9"/></textElement>
+        <textFieldExpression><![CDATA["  " + $F{firstName}]]></textFieldExpression>
+      </textField>
+      <textField isBlankWhenNull="true">
+        <reportElement x="150" y="0" width="110" height="24" uuid="d2"/>
+        <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="9"/></textElement>
+        <textFieldExpression><![CDATA["  " + $F{lastName}]]></textFieldExpression>
+      </textField>
+      <textField isBlankWhenNull="true">
+        <reportElement x="260" y="0" width="100" height="24" uuid="d3"/>
+        <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="9"/></textElement>
+        <textFieldExpression><![CDATA["  " + $F{phone}]]></textFieldExpression>
+      </textField>
+      <textField isBlankWhenNull="true">
+        <reportElement x="360" y="0" width="145" height="24" uuid="d4"/>
+        <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="9"/></textElement>
+        <textFieldExpression><![CDATA["  " + $F{email}]]></textFieldExpression>
+      </textField>
+      <textField isBlankWhenNull="true">
+        <reportElement x="505" y="0" width="50"  height="24" uuid="d5" forecolor="#C0392B"/>
+        <textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <textFieldExpression><![CDATA[$F{attendedCount}]]></textFieldExpression>
+      </textField>
+      <!-- Bottom border line -->
+      <line>
+        <reportElement x="0" y="23" width="555" height="1" forecolor="#DDDDDD" uuid="row-line"/>
+        <graphicElement><pen lineWidth="0.5"/></graphicElement>
+      </line>
+    </band>
+  </detail>
+
+  <!-- ── COLUMN FOOTER ─────────────────────────────────────────────── -->
+  <columnFooter>
+    <band height="20" splitType="Stretch">
+      <line>
+        <reportElement x="0" y="0" width="555" height="1" forecolor="#2C3E6B" uuid="col-footer-line"/>
+        <graphicElement><pen lineWidth="1.0"/></graphicElement>
+      </line>
+      <textField>
+        <reportElement x="0" y="4" width="300" height="14" forecolor="#555555" uuid="total-label"/>
+        <textElement><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <textFieldExpression><![CDATA["Total trainees listed: " + $V{REPORT_COUNT}]]></textFieldExpression>
+      </textField>
+    </band>
+  </columnFooter>
+
+  <!-- ── PAGE FOOTER ───────────────────────────────────────────────── -->
+  <pageFooter>
+    <band height="30" splitType="Stretch">
+      <line>
+        <reportElement x="0" y="0" width="555" height="1" forecolor="#CCCCCC" uuid="footer-line"/>
+        <graphicElement><pen lineWidth="0.5"/></graphicElement>
+      </line>
+      <staticText>
+        <reportElement x="0" y="8" width="200" height="14" forecolor="#888888" uuid="footer-brand"/>
+        <textElement><font fontName="SansSerif" size="8"/></textElement>
+        <text><![CDATA[FitWell Management System]]></text>
+      </staticText>
+      <textField pattern="yyyy-MM-dd HH:mm">
+        <reportElement x="200" y="8" width="175" height="14" forecolor="#888888" uuid="footer-date"/>
+        <textElement textAlignment="Center"><font fontName="SansSerif" size="8"/></textElement>
+        <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement x="475" y="8" width="80" height="14" forecolor="#888888" uuid="footer-page"/>
+        <textElement textAlignment="Right"><font fontName="SansSerif" size="8"/></textElement>
+        <textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of " + $V{PAGE_COUNT}]]></textFieldExpression>
+      </textField>
+    </band>
+  </pageFooter>
+
+  <!-- ── SUMMARY ───────────────────────────────────────────────────── -->
+  <summary>
+    <band height="30" splitType="Stretch">
+      <rectangle>
+        <reportElement x="0" y="0" width="555" height="28" backcolor="#EEF2FA" forecolor="#EEF2FA" uuid="sum-bg"/>
+        <graphicElement><pen lineWidth="0.0"/></graphicElement>
+      </rectangle>
+      <staticText>
+        <reportElement x="10" y="6" width="400" height="16" forecolor="#2C3E6B" uuid="sum-text"/>
+        <textElement><font fontName="SansSerif" size="9" isBold="true"/></textElement>
+        <text><![CDATA[End of Report — FitWell Low Attendance Summary]]></text>
+      </staticText>
+    </band>
+  </summary>
+
+  <!-- ── NO DATA ───────────────────────────────────────────────────── -->
+  <noData>
+    <band height="60">
+      <staticText>
+        <reportElement x="0" y="15" width="555" height="30" forecolor="#888888" uuid="no-data"/>
+        <textElement textAlignment="Center"><font fontName="SansSerif" size="12" isBold="true"/></textElement>
+        <text><![CDATA[No trainees found with fewer than 7 attended classes for the selected period.]]></text>
+      </staticText>
+    </band>
+  </noData>
+
+</jasperReport>

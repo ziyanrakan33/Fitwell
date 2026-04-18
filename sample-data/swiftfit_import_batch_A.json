@@ -1,0 +1,50 @@
+{
+  "batchId": "BATCH-SF-2026-03-A",
+  "source": "SwiftFit",
+  "updates": [
+    {
+      "serialNumber": "EQ-SF-TREADMILL-01",
+      "newQuantity": 5,
+      "photoUrl": "https://swiftfit.example.com/images/treadmill-01.jpg",
+      "isNewItem": true,
+      "name": "Commercial Treadmill Pro",
+      "category": "cardio",
+      "x": 1,
+      "y": 1,
+      "shelf": 0
+    },
+    {
+      "serialNumber": "EQ-SF-DUMBBELL-10KG",
+      "newQuantity": 20,
+      "photoUrl": "https://swiftfit.example.com/images/dumbbell-10.jpg",
+      "isNewItem": false,
+      "name": "Dumbbell 10kg",
+      "category": "strength",
+      "x": 3,
+      "y": 2,
+      "shelf": 1
+    },
+    {
+      "serialNumber": "EQ-SF-YOGAMAT-PRO",
+      "newQuantity": 30,
+      "photoUrl": "https://swiftfit.example.com/images/yoga-mat.jpg",
+      "isNewItem": true,
+      "name": "Premium Yoga Mat",
+      "category": "flexibility",
+      "x": 2,
+      "y": 5,
+      "shelf": 2
+    },
+    {
+      "serialNumber": "EQ-SF-ROWING-01",
+      "newQuantity": 3,
+      "photoUrl": "https://swiftfit.example.com/images/rower-01.jpg",
+      "isNewItem": true,
+      "name": "Rowing Machine Pro",
+      "category": "cardio",
+      "x": 4,
+      "y": 0,
+      "shelf": 0
+    }
+  ]
+}
