@@ -165,7 +165,7 @@ public class ConsultantDashboardPanel extends JPanel {
         JLabel logo = new JLabel("FitWell");
         logo.setForeground(FWTheme.TEXT_PRIMARY);
         logo.setFont(new Font("SansSerif", Font.BOLD, 20));
-        fitwell.entity.ConsultantRole consultantRole = AuthenticationService.getInstance().getCurrentConsultantRole();
+        fitwell.domain.user.ConsultantRole consultantRole = AuthenticationService.getInstance().getCurrentConsultantRole();
         String roleLabel = consultantRole != null ? consultantRole.name() : "Consultant";
         JLabel role = new JLabel(roleLabel);
         role.setForeground(FWTheme.TEXT_SECONDARY);
