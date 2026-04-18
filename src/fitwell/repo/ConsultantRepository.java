@@ -26,7 +26,7 @@ public class ConsultantRepository {
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getBoolean("approved"),
-                        ConsultantRole.fromString(rs.getString("role"))
+                        ConsultantRole.fromString(rs.getString(8))
                 ));
             }
             return out;
