@@ -1,8 +1,8 @@
 package fitwell.control;
 
-import fitwell.entity.EmergencyAlert;
-import fitwell.entity.TrainingClass;
-import fitwell.entity.TrainingClassStatus;
+import fitwell.domain.emergency.EmergencyAlert;
+import fitwell.domain.training.TrainingClass;
+import fitwell.domain.training.TrainingClassStatus;
 import fitwell.integration.NotificationGateway;
 import fitwell.repo.EmergencyAlertRepository;
 import fitwell.repo.TrainingClassRuntimeStateRepository;

@@ -1,12 +1,12 @@
 package fitwell.control;
 
-import fitwell.entity.ClassEquipmentAssignment;
-import fitwell.entity.Equipment;
-import fitwell.entity.EquipmentAssignment;
-import fitwell.entity.EquipmentInspection;
-import fitwell.entity.InspectionSeverity;
-import fitwell.entity.TrainingClass;
-import fitwell.entity.TrainingClassStatus;
+import fitwell.domain.equipment.ClassEquipmentAssignment;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.equipment.EquipmentAssignment;
+import fitwell.domain.equipment.EquipmentInspection;
+import fitwell.domain.equipment.InspectionSeverity;
+import fitwell.domain.training.TrainingClass;
+import fitwell.domain.training.TrainingClassStatus;
 import fitwell.integration.NotificationGateway;
 import fitwell.repo.ClassEquipmentAssignmentRepository;
 import fitwell.repo.EquipmentAssignmentRepository;

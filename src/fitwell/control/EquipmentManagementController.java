@@ -4,7 +4,13 @@ import java.time.LocalDateTime;
 
 import fitwell.integration.ImageExtractionService;
 import fitwell.integration.NotificationGateway;
-import fitwell.entity.*;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.equipment.EquipmentBatch;
+import fitwell.domain.equipment.EquipmentCategory;
+import fitwell.domain.equipment.EquipmentLocation;
+import fitwell.domain.equipment.EquipmentStatus;
+import fitwell.domain.equipment.EquipmentUpdate;
+import fitwell.domain.reports.ExtractionResult;
 import fitwell.repo.EquipmentRepository;
 import fitwell.util.SimpleJsonParser;
 
@@ -102,11 +108,11 @@ public class EquipmentManagementController {
 
     // ===== SwiftFit JSON Import =====
 
-    public EquipmentUpdateBatch importMonthlyUpdate(String json) {
-        EquipmentUpdateBatch batch = SimpleJsonParser.parseUpdateBatch(json);
+    public EquipmentBatch importMonthlyUpdate(String json) {
+        EquipmentBatch batch = SimpleJsonParser.parseUpdateBatch(json);
 
         if (batch == null) {
-            batch = new EquipmentUpdateBatch("BATCH-" + System.currentTimeMillis(), LocalDateTime.now(), "SwiftFit");
+            batch = new EquipmentBatch("BATCH-" + System.currentTimeMillis(), LocalDateTime.now(), "SwiftFit");
         }
 
         for (EquipmentUpdate u : batch.getUpdates()) {

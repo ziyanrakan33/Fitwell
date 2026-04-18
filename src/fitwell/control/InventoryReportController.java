@@ -3,9 +3,9 @@ package fitwell.control;
 import java.util.List;
 
 import fitwell.integration.SwiftFitGateway;
-import fitwell.entity.ClassEquipmentAssignment;
-import fitwell.entity.Equipment;
-import fitwell.entity.TrainingClass;
+import fitwell.domain.equipment.ClassEquipmentAssignment;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.training.TrainingClass;
 import fitwell.repo.ClassEquipmentAssignmentRepository;
 import fitwell.repo.EquipmentRepository;
 import fitwell.repo.TrainingClassRuntimeStateRepository;

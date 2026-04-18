@@ -1,7 +1,10 @@
 package fitwell.repo;
 
 import fitwell.db.Db;
-import fitwell.entity.*;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.equipment.EquipmentCategory;
+import fitwell.domain.equipment.EquipmentLocation;
+import fitwell.domain.equipment.EquipmentStatus;
 
 import java.sql.*;
 import java.util.ArrayList;

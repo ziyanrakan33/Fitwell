@@ -1,7 +1,7 @@
 package fitwell.util;
 
-import fitwell.entity.EquipmentUpdate;
-import fitwell.entity.EquipmentUpdateBatch;
+import fitwell.domain.equipment.EquipmentUpdate;
+import fitwell.domain.equipment.EquipmentBatch;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Robust character-by-character JSON parser for EquipmentUpdateBatch payloads.
+ * Robust character-by-character JSON parser for EquipmentBatch payloads.
  * Handles nested objects, arrays, escape sequences, and whitespace correctly.
  */
 public class SimpleJsonParser {
 
-    public static EquipmentUpdateBatch parseUpdateBatch(String json) {
+    public static EquipmentBatch parseUpdateBatch(String json) {
         if (json == null || json.isBlank()) return null;
         try {
             Map<String, Object> root = parseObject(json.trim(), new int[]{0});
@@ -24,7 +24,7 @@ public class SimpleJsonParser {
             if (batchId == null) batchId = "BATCH-" + System.currentTimeMillis();
             if (source == null) source = "SwiftFit";
 
-            EquipmentUpdateBatch batch = new EquipmentUpdateBatch(batchId, LocalDateTime.now(), source);
+            EquipmentBatch batch = new EquipmentBatch(batchId, LocalDateTime.now(), source);
 
             Object updatesObj = root.get("updates");
             if (updatesObj instanceof List<?>) {

@@ -1,7 +1,7 @@
 package fitwell.repo;
 
 import fitwell.db.Db;
-import fitwell.entity.ClassRegistration;
+import fitwell.domain.registration.ClassRegistration;
 
 import java.sql.*;
 import java.time.LocalDateTime;

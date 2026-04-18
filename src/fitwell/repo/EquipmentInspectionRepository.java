@@ -1,6 +1,6 @@
 package fitwell.repo;
 
-import fitwell.entity.EquipmentInspection;
+import fitwell.domain.equipment.EquipmentInspection;
 
 import java.util.ArrayList;
 import java.util.Comparator;

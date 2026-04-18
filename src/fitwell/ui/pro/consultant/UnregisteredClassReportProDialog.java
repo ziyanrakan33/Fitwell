@@ -1,7 +1,7 @@
 package fitwell.ui.pro.consultant;
 
 import fitwell.control.LowAttendanceReportService;
-import fitwell.entity.LowAttendanceRecord;
+import fitwell.domain.reports.LowAttendanceRecord;
 import fitwell.ui.pro.components.ProTextBlocks;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;

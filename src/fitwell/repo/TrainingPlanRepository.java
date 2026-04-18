@@ -1,10 +1,10 @@
 package fitwell.repo;
 
 import fitwell.db.Db;
-import fitwell.entity.GroupPlan;
-import fitwell.entity.PersonalPlan;
-import fitwell.entity.Plan;
-import fitwell.entity.PlanStatus;
+import fitwell.domain.training.GroupPlan;
+import fitwell.domain.training.PersonalPlan;
+import fitwell.domain.training.Plan;
+import fitwell.domain.training.PlanStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

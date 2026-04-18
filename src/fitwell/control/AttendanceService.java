@@ -1,10 +1,10 @@
 package fitwell.control;
 
-import fitwell.entity.AttendanceStatus;
-import fitwell.entity.ClassRegistration;
-import fitwell.entity.LowAttendanceRecord;
-import fitwell.entity.Trainee;
-import fitwell.entity.TrainingClass;
+import fitwell.domain.registration.AttendanceStatus;
+import fitwell.domain.registration.ClassRegistration;
+import fitwell.domain.reports.LowAttendanceRecord;
+import fitwell.domain.user.Trainee;
+import fitwell.domain.training.TrainingClass;
 import fitwell.repo.AttendanceRepository;
 import fitwell.repo.RegistrationRepository;
 import fitwell.repo.TraineeRepository;

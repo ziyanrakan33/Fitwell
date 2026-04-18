@@ -4,12 +4,12 @@ import fitwell.control.FitWellServiceRegistry;
 import fitwell.control.TraineeProfileService;
 import fitwell.control.TrainingClassService;
 import fitwell.control.TrainingPlanService;
-import fitwell.entity.GroupPlan;
-import fitwell.entity.PersonalPlan;
-import fitwell.entity.Plan;
-import fitwell.entity.Trainee;
-import fitwell.entity.TrainingClass;
-import fitwell.entity.TrainingPlanMember;
+import fitwell.domain.training.GroupPlan;
+import fitwell.domain.training.PersonalPlan;
+import fitwell.domain.training.Plan;
+import fitwell.domain.user.Trainee;
+import fitwell.domain.training.TrainingClass;
+import fitwell.domain.training.TrainingPlanMember;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 

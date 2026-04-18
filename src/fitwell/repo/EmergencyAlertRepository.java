@@ -1,6 +1,6 @@
 package fitwell.repo;
 
-import fitwell.entity.EmergencyAlert;
+import fitwell.domain.emergency.EmergencyAlert;
 
 public class EmergencyAlertRepository {
     private static EmergencyAlert currentAlert;

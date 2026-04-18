@@ -1,8 +1,8 @@
 package fitwell.ui.pro.consultant;
 
 import fitwell.control.TrainingClassService;
-import fitwell.entity.Consultant;
-import fitwell.entity.TrainingClass;
+import fitwell.domain.user.Consultant;
+import fitwell.domain.training.TrainingClass;
 import fitwell.repo.ConsultantRepository;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;

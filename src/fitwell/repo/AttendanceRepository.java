@@ -1,6 +1,6 @@
 package fitwell.repo;
 
-import fitwell.entity.AttendanceStatus;
+import fitwell.domain.registration.AttendanceStatus;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;

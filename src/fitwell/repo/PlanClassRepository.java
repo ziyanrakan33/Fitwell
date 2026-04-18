@@ -1,6 +1,6 @@
 package fitwell.repo;
 
-import fitwell.entity.PlanClassAssignment;
+import fitwell.domain.training.PlanClassAssignment;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

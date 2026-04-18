@@ -1,7 +1,7 @@
 package fitwell.integration;
 
-import fitwell.entity.EquipmentCategory;
-import fitwell.entity.ExtractionResult;
+import fitwell.domain.equipment.EquipmentCategory;
+import fitwell.domain.reports.ExtractionResult;
 
 /**
  * MVP stub for image-based equipment data extraction.

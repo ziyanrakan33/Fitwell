@@ -1,8 +1,8 @@
 package fitwell.util;
 
-import fitwell.entity.Equipment;
-import fitwell.entity.EquipmentLocation;
-import fitwell.entity.EquipmentStatus;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.equipment.EquipmentLocation;
+import fitwell.domain.equipment.EquipmentStatus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

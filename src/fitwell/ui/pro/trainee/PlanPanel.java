@@ -1,8 +1,8 @@
 package fitwell.ui.pro.trainee;
 
-import fitwell.entity.GroupPlan;
-import fitwell.entity.PersonalPlan;
-import fitwell.entity.Plan;
+import fitwell.domain.training.GroupPlan;
+import fitwell.domain.training.PersonalPlan;
+import fitwell.domain.training.Plan;
 
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;

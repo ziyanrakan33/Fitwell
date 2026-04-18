@@ -1,6 +1,6 @@
 package fitwell.repo;
 
-import fitwell.entity.TrainingClassStatus;
+import fitwell.domain.training.TrainingClassStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
 package fitwell.control;
 
-import fitwell.entity.GroupPlan;
-import fitwell.entity.Plan;
-import fitwell.entity.TrainingClass;
-import fitwell.entity.TrainingPlanMember;
+import fitwell.domain.training.GroupPlan;
+import fitwell.domain.training.Plan;
+import fitwell.domain.training.TrainingClass;
+import fitwell.domain.training.TrainingPlanMember;
 import fitwell.repo.PlanClassRepository;
 import fitwell.repo.PlanMemberRepository;
 import fitwell.repo.TrainingPlanRepository;

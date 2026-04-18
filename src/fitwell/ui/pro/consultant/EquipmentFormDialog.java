@@ -8,10 +8,10 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import fitwell.entity.Equipment;
-import fitwell.entity.EquipmentCategory;
-import fitwell.entity.EquipmentLocation;
-import fitwell.entity.EquipmentStatus;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.equipment.EquipmentCategory;
+import fitwell.domain.equipment.EquipmentLocation;
+import fitwell.domain.equipment.EquipmentStatus;
 import fitwell.ui.pro.theme.FWTheme;
 
 public class EquipmentFormDialog extends JDialog {

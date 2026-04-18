@@ -1,6 +1,6 @@
 package fitwell.control;
 
-import fitwell.entity.LowAttendanceRecord;
+import fitwell.domain.reports.LowAttendanceRecord;
 
 import java.time.LocalDate;
 import java.util.List;

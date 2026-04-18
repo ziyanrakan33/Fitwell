@@ -1,8 +1,8 @@
 package fitwell.repo;
 
 import fitwell.db.Db;
-import fitwell.entity.Consultant;
-import fitwell.entity.ConsultantRole;
+import fitwell.domain.user.Consultant;
+import fitwell.domain.user.ConsultantRole;
 
 import java.sql.*;
 import java.util.*;

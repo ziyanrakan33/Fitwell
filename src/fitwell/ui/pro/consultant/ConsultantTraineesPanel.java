@@ -2,8 +2,8 @@ package fitwell.ui.pro.consultant;
 
 import fitwell.control.FitWellServiceRegistry;
 import fitwell.control.TraineeProfileService;
-import fitwell.entity.PreferredUpdateMethod;
-import fitwell.entity.Trainee;
+import fitwell.domain.shared.PreferredUpdateMethod;
+import fitwell.domain.user.Trainee;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 

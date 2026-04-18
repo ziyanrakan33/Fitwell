@@ -1,6 +1,6 @@
 package fitwell.control;
 
-import fitwell.entity.TrainingClass;
+import fitwell.domain.training.TrainingClass;
 import fitwell.repo.RegistrationRepository;
 import fitwell.repo.TrainingClassRepository;
 

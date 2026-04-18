@@ -1,8 +1,8 @@
 package fitwell.repo;
 
 import fitwell.db.Db;
-import fitwell.entity.Trainee;
-import fitwell.entity.PreferredUpdateMethod;
+import fitwell.domain.user.Trainee;
+import fitwell.domain.shared.PreferredUpdateMethod;
 
 import java.sql.*;
 import java.util.*;

@@ -1,6 +1,6 @@
 package fitwell.repo;
 
-import fitwell.entity.TrainingPlanMember;
+import fitwell.domain.training.TrainingPlanMember;
 
 import java.util.ArrayList;
 import java.util.List;

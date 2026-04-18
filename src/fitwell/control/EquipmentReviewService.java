@@ -1,9 +1,9 @@
 package fitwell.control;
 
-import fitwell.entity.Equipment;
-import fitwell.entity.EquipmentCategory;
-import fitwell.entity.EquipmentInspection;
-import fitwell.entity.EquipmentStatus;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.equipment.EquipmentCategory;
+import fitwell.domain.equipment.EquipmentInspection;
+import fitwell.domain.equipment.EquipmentStatus;
 import fitwell.integration.NotificationGateway;
 import fitwell.repo.EquipmentInspectionRepository;
 import fitwell.repo.EquipmentRepository;

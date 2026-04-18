@@ -1,5 +1,5 @@
 package fitwell.control;
-import fitwell.entity.TrainingClass;
+import fitwell.domain.training.TrainingClass;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

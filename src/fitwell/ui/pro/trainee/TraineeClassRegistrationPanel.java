@@ -4,7 +4,7 @@ import fitwell.control.FitWellServiceRegistry;
 import fitwell.control.RegistrationController;
 import fitwell.control.TraineeProfileService;
 import fitwell.control.TrainingClassQueryService;
-import fitwell.entity.TrainingClass;
+import fitwell.domain.training.TrainingClass;
 import fitwell.repo.RegistrationRepository;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;

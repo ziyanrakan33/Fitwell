@@ -7,9 +7,9 @@ import fitwell.control.InspectionWorkflowService;
 import fitwell.control.LowAttendanceReportService;
 import fitwell.control.TrainingClassQueryService;
 import fitwell.control.TrainingClassService;
-import fitwell.entity.AttendanceStatus;
-import fitwell.entity.TrainingClass;
-import fitwell.entity.TrainingClassStatus;
+import fitwell.domain.registration.AttendanceStatus;
+import fitwell.domain.training.TrainingClass;
+import fitwell.domain.training.TrainingClassStatus;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 

@@ -1,8 +1,8 @@
 package fitwell.repo;
 
 import fitwell.db.Db;
-import fitwell.entity.TrainingClass;
-import fitwell.entity.TrainingClassStatus;
+import fitwell.domain.training.TrainingClass;
+import fitwell.domain.training.TrainingClassStatus;
 
 import java.sql.*;
 import java.util.*;

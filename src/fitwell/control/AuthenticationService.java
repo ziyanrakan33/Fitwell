@@ -1,6 +1,6 @@
 package fitwell.control;
 
-import fitwell.entity.ConsultantRole;
+import fitwell.domain.user.ConsultantRole;
 
 public class AuthenticationService {
     private static final AuthenticationService INSTANCE = new AuthenticationService();

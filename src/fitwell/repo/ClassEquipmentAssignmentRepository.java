@@ -1,7 +1,7 @@
 package fitwell.repo;
 
 import fitwell.db.Db;
-import fitwell.entity.ClassEquipmentAssignment;
+import fitwell.domain.equipment.ClassEquipmentAssignment;
 
 import java.sql.*;
 import java.util.ArrayList;

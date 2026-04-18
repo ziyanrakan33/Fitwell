@@ -1,12 +1,12 @@
 package fitwell.control;
 
-import fitwell.entity.Equipment;
-import fitwell.entity.EquipmentCategory;
-import fitwell.entity.EquipmentLocation;
-import fitwell.entity.EquipmentStatus;
-import fitwell.entity.EquipmentUpdate;
-import fitwell.entity.EquipmentUpdateBatch;
-import fitwell.entity.ExtractionResult;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.equipment.EquipmentCategory;
+import fitwell.domain.equipment.EquipmentLocation;
+import fitwell.domain.equipment.EquipmentStatus;
+import fitwell.domain.equipment.EquipmentUpdate;
+import fitwell.domain.equipment.EquipmentBatch;
+import fitwell.domain.reports.ExtractionResult;
 import fitwell.integration.ImageExtractionService;
 import fitwell.integration.NotificationGateway;
 import fitwell.integration.SwiftFitGateway;
@@ -31,11 +31,11 @@ public class EquipmentImportService {
         this.swiftFitGateway = swiftFitGateway;
     }
 
-    public EquipmentUpdateBatch importMonthlyUpdate(String json) {
+    public EquipmentBatch importMonthlyUpdate(String json) {
         swiftFitGateway.receiveMonthlyEquipmentUpdates(json);
-        EquipmentUpdateBatch batch = SimpleJsonParser.parseUpdateBatch(json);
+        EquipmentBatch batch = SimpleJsonParser.parseUpdateBatch(json);
         if (batch == null) {
-            batch = new EquipmentUpdateBatch("BATCH-" + System.currentTimeMillis(), LocalDateTime.now(), "SwiftFit");
+            batch = new EquipmentBatch("BATCH-" + System.currentTimeMillis(), LocalDateTime.now(), "SwiftFit");
         }
 
         for (EquipmentUpdate update : batch.getUpdates()) {

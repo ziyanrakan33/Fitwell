@@ -1,6 +1,6 @@
 package fitwell.control;
 
-import fitwell.entity.EquipmentAssignment;
+import fitwell.domain.equipment.EquipmentAssignment;
 import fitwell.repo.EquipmentAssignmentRepository;
 
 import java.time.LocalDateTime;

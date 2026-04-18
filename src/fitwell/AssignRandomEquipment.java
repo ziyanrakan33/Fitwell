@@ -2,8 +2,8 @@ package fitwell;
 
 import fitwell.control.EquipmentAssignmentController;
 import fitwell.control.FitWellServiceRegistry;
-import fitwell.entity.Equipment;
-import fitwell.entity.TrainingClass;
+import fitwell.domain.equipment.Equipment;
+import fitwell.domain.training.TrainingClass;
 import fitwell.repo.ConsultantRepository;
 
 import java.util.ArrayList;

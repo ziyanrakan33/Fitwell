@@ -1,9 +1,9 @@
 package fitwell.ui.pro;
 
 import fitwell.control.AuthenticationService;
-import fitwell.entity.Consultant;
-import fitwell.entity.ConsultantRole;
-import fitwell.entity.Trainee;
+import fitwell.domain.user.Consultant;
+import fitwell.domain.user.ConsultantRole;
+import fitwell.domain.user.Trainee;
 import fitwell.repo.ConsultantRepository;
 import fitwell.repo.TraineeRepository;
 import fitwell.ui.pro.theme.FWTheme;
