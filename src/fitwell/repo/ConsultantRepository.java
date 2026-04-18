@@ -10,7 +10,7 @@ import java.util.*;
 public class ConsultantRepository {
 
     public List<Consultant> findAll() {
-        String sql = "SELECT ID, firstName, lastName, phone, email, password, approved, role FROM TblConsultant ORDER BY ID";
+        String sql = "SELECT ID, firstName, lastName, phone, email, password, approved, \"role\" FROM TblConsultant ORDER BY ID";
         List<Consultant> out = new ArrayList<>();
 
         try (Connection c = Db.getConnection();
@@ -63,7 +63,7 @@ public class ConsultantRepository {
     }
 
     public void update(Consultant c) {
-        String sql = "UPDATE TblConsultant SET firstName=?, lastName=?, phone=?, email=?, password=?, role=? WHERE ID=?";
+        String sql = "UPDATE TblConsultant SET firstName=?, lastName=?, phone=?, email=?, password=?, \"role\"=? WHERE ID=?";
         try (Connection conn = Db.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, c.getFirstName());
@@ -80,7 +80,7 @@ public class ConsultantRepository {
     }
 
     public int insert(Consultant c) {
-        String sql = "INSERT INTO TblConsultant (firstName, lastName, phone, email, password, approved, role) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO TblConsultant (firstName, lastName, phone, email, password, approved, \"role\") VALUES (?,?,?,?,?,?,?)";
         try (Connection conn = Db.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, c.getFirstName());
@@ -161,12 +161,12 @@ public class ConsultantRepository {
     public void ensureRoleColumn() {
         try (Connection c = Db.getConnection();
              Statement st = c.createStatement()) {
-            st.executeUpdate("ALTER TABLE TblConsultant ADD COLUMN role VARCHAR(50)");
+            st.executeUpdate("ALTER TABLE TblConsultant ADD COLUMN \"role\" VARCHAR(50)");
         } catch (Exception ignored) {
         }
         try (Connection c = Db.getConnection();
              PreparedStatement ps = c.prepareStatement(
-                     "UPDATE TblConsultant SET role = 'MANAGER' WHERE role IS NULL OR role = ''")) {
+                     "UPDATE TblConsultant SET \"role\" = 'MANAGER' WHERE \"role\" IS NULL OR \"role\" = ''")) {
             ps.executeUpdate();
         } catch (Exception ignored) {
         }
@@ -175,7 +175,7 @@ public class ConsultantRepository {
     public void ensureDefaultExists() {
         if (!findAll().isEmpty()) return;
 
-        String ins = "INSERT INTO TblConsultant (firstName, lastName, phone, email, password, approved, role) VALUES (?,?,?,?,?,?,?)";
+        String ins = "INSERT INTO TblConsultant (firstName, lastName, phone, email, password, approved, \"role\") VALUES (?,?,?,?,?,?,?)";
         try (Connection c = Db.getConnection();
              PreparedStatement ps = c.prepareStatement(ins)) {
 
