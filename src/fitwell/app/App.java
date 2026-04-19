@@ -10,7 +10,7 @@ import fitwell.persistence.api.ConsultantRepository;
 import fitwell.persistence.jdbc.JdbcConsultantRepository;
 import fitwell.persistence.jdbc.JdbcTraineeRepository;
 import fitwell.persistence.api.TraineeRepository;
-import fitwell.ui.pro.AppShellFrame;
+import fitwell.ui.shell.AppShellFrame;
 
 public class App {
     public static void main(String[] args) {
