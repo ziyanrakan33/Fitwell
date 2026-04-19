@@ -1,6 +1,5 @@
 package fitwell.ui.pro.trainee;
 
-import fitwell.control.FitWellServiceRegistry;
 import fitwell.controller.RegistrationController;
 import fitwell.service.training.TraineeProfileService;
 import fitwell.service.training.TrainingClassQueryService;
@@ -41,11 +40,12 @@ public class TraineeClassRegistrationPanel extends JPanel {
 
     public TraineeClassRegistrationPanel(TrainingClassQueryService trainingClassQueryService,
                                          TraineeProfileService traineeProfileService,
-                                         RegistrationController registrationController) {
+                                         RegistrationController registrationController,
+                                         fitwell.persistence.api.RegistrationRepository registrationRepository) {
         this.trainingClassQueryService = trainingClassQueryService;
         this.traineeProfileService = traineeProfileService;
         this.registrationController = registrationController;
-        this.registrationRepository = FitWellServiceRegistry.getInstance().registrationRepository();
+        this.registrationRepository = registrationRepository;
         setLayout(new BorderLayout(12, 12));
         setOpaque(true);
         setBackground(FWTheme.DASH_BG);

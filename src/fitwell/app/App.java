@@ -1,4 +1,4 @@
-package fitwell;
+package fitwell.app;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -17,8 +17,10 @@ public class App {
         setNimbus();
         initDatabase();
 
+        ApplicationContext context = new ApplicationContext();
+
         SwingUtilities.invokeLater(() -> {
-            AppShellFrame app = new AppShellFrame();
+            AppShellFrame app = new AppShellFrame(context);
             app.setVisible(true);
         });
     }

@@ -1,6 +1,5 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.FitWellServiceRegistry;
 import fitwell.service.training.TraineeProfileService;
 import fitwell.domain.shared.PreferredUpdateMethod;
 import fitwell.domain.user.Trainee;
@@ -27,8 +26,8 @@ public class ConsultantTraineesPanel extends JPanel {
     private final JTable table = new JTable(tableModel);
     private List<Trainee> visibleTrainees = new ArrayList<>();
 
-    public ConsultantTraineesPanel() {
-        this.traineeProfileService = FitWellServiceRegistry.getInstance().traineeProfileService();
+    public ConsultantTraineesPanel(TraineeProfileService traineeProfileService) {
+        this.traineeProfileService = traineeProfileService;
         setLayout(new BorderLayout(12, 12));
         setOpaque(true);
         setBackground(FWTheme.DASH_BG);
@@ -86,7 +85,7 @@ public class ConsultantTraineesPanel extends JPanel {
 
     private void addTrainee() {
         TraineeFormDialog dialog = new TraineeFormDialog(
-                SwingUtilities.getWindowAncestor(this), null);
+                SwingUtilities.getWindowAncestor(this), null, traineeProfileService);
         dialog.setVisible(true);
         if (dialog.isSaved()) {
             reload();
@@ -100,7 +99,7 @@ public class ConsultantTraineesPanel extends JPanel {
             return;
         }
         TraineeFormDialog dialog = new TraineeFormDialog(
-                SwingUtilities.getWindowAncestor(this), selected);
+                SwingUtilities.getWindowAncestor(this), selected, traineeProfileService);
         dialog.setVisible(true);
         if (dialog.isSaved()) {
             reload();
@@ -131,8 +130,7 @@ public class ConsultantTraineesPanel extends JPanel {
     }
 
     static class TraineeFormDialog extends JDialog {
-        private final TraineeProfileService service =
-                FitWellServiceRegistry.getInstance().traineeProfileService();
+        private final TraineeProfileService service;
         private final Trainee editing;
         private boolean saved = false;
 
@@ -142,8 +140,9 @@ public class ConsultantTraineesPanel extends JPanel {
         private final JTextField emailField = new JTextField(20);
         private final JComboBox<String> updateMethodCombo = new JComboBox<>(new String[]{"EMAIL", "SMS"});
 
-        TraineeFormDialog(Window owner, Trainee editing) {
+        TraineeFormDialog(Window owner, Trainee editing, TraineeProfileService service) {
             super(owner, editing == null ? "Add Trainee" : "Edit Trainee", ModalityType.APPLICATION_MODAL);
+            this.service = service;
             this.editing = editing;
             buildUi();
             if (editing != null) {

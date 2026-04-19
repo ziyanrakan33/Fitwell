@@ -30,6 +30,7 @@ public class ConsultantClassesPanel extends JPanel {
     private final LowAttendanceReportService lowAttendanceReportService;
     private final EquipmentAssignmentController equipmentAssignmentController;
     private final InspectionWorkflowService inspectionWorkflowService;
+    private final AuthenticationService authenticationService;
 
     private final JTextField searchField = new JTextField();
     private final JComboBox<String> typeFilterCombo = new JComboBox<>(new String[]{
@@ -64,13 +65,15 @@ public class ConsultantClassesPanel extends JPanel {
                                   AttendanceService attendanceService,
                                   LowAttendanceReportService lowAttendanceReportService,
                                   EquipmentAssignmentController equipmentAssignmentController,
-                                  InspectionWorkflowService inspectionWorkflowService) {
+                                  InspectionWorkflowService inspectionWorkflowService,
+                                  AuthenticationService authenticationService) {
         this.trainingClassService = trainingClassService;
         this.trainingClassQueryService = trainingClassQueryService;
         this.attendanceService = attendanceService;
         this.lowAttendanceReportService = lowAttendanceReportService;
         this.equipmentAssignmentController = equipmentAssignmentController;
         this.inspectionWorkflowService = inspectionWorkflowService;
+        this.authenticationService = authenticationService;
 
         setLayout(new BorderLayout(12, 12));
         setOpaque(true);
@@ -346,7 +349,7 @@ public class ConsultantClassesPanel extends JPanel {
         }
         new EquipmentAssignmentProDialog(SwingUtilities.getWindowAncestor(this),
                 equipmentAssignmentController, trainingClass.getClassId(),
-                AuthenticationService.getInstance().getCurrentUserId()).setVisible(true);
+                authenticationService.getCurrentUserId()).setVisible(true);
     }
 
     private TrainingClass selectedClass() {

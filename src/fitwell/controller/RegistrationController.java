@@ -5,8 +5,6 @@ import fitwell.service.training.TrainingClassService;
 import fitwell.service.emergency.EmergencyAlertService;
 import fitwell.domain.training.TrainingClassStatus;
 import fitwell.persistence.api.RegistrationRepository;
-import fitwell.control.FitWellServiceRegistry;
-
 import java.time.LocalDateTime;
 
 public class RegistrationController {
@@ -15,11 +13,12 @@ public class RegistrationController {
     private final TrainingClassService trainingClassService;
     private final EmergencyAlertService emergencyAlertService;
 
-    public RegistrationController() {
-        FitWellServiceRegistry registry = FitWellServiceRegistry.getInstance();
-        this.repo = registry.registrationRepository();
-        this.trainingClassService = registry.trainingClassService();
-        this.emergencyAlertService = registry.emergencyAlertService();
+    public RegistrationController(RegistrationRepository repo,
+                                   TrainingClassService trainingClassService,
+                                   EmergencyAlertService emergencyAlertService) {
+        this.repo = repo;
+        this.trainingClassService = trainingClassService;
+        this.emergencyAlertService = emergencyAlertService;
     }
 
     // ===== UI Friendly API (Integer) =====

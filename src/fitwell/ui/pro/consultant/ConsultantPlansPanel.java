@@ -1,6 +1,5 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.FitWellServiceRegistry;
 import fitwell.service.training.TraineeProfileService;
 import fitwell.service.training.TrainingClassService;
 import fitwell.service.training.TrainingPlanService;
@@ -43,11 +42,12 @@ public class ConsultantPlansPanel extends JPanel {
 
     private final JTextArea detailArea = new JTextArea();
 
-    public ConsultantPlansPanel() {
-        FitWellServiceRegistry services = FitWellServiceRegistry.getInstance();
-        this.planService = services.trainingPlanService();
-        this.traineeProfileService = services.traineeProfileService();
-        this.trainingClassService = services.trainingClassService();
+    public ConsultantPlansPanel(TrainingPlanService planService,
+                                TraineeProfileService traineeProfileService,
+                                TrainingClassService trainingClassService) {
+        this.planService = planService;
+        this.traineeProfileService = traineeProfileService;
+        this.trainingClassService = trainingClassService;
         setLayout(new BorderLayout(12, 12));
         setOpaque(true);
         setBackground(FWTheme.DASH_BG);

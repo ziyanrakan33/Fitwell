@@ -3,7 +3,6 @@ package fitwell.service.auth;
 import fitwell.domain.user.ConsultantRole;
 
 public class AuthenticationService {
-    private static final AuthenticationService INSTANCE = new AuthenticationService();
 
     private boolean loggedIn = false;
     private int currentUserId = -1;
@@ -11,11 +10,7 @@ public class AuthenticationService {
     private String currentUserName = null;
     private ConsultantRole currentConsultantRole = null;
 
-    private AuthenticationService() {}
-
-    public static AuthenticationService getInstance() {
-        return INSTANCE;
-    }
+    public AuthenticationService() {}
 
     public void login(int userId, String role, String displayName) {
         this.currentUserId = userId;

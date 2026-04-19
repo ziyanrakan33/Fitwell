@@ -15,10 +15,11 @@ import java.util.List;
 
 public class PlanPanel extends JPanel {
 
-    private final fitwell.service.training.TrainingPlanService planService = fitwell.control.FitWellServiceRegistry.getInstance().trainingPlanService();
-    private final int currentTraineeId = 1; // Assuming Trainee ID 1 for now
+    private final fitwell.service.training.TrainingPlanService planService;
+    private final int currentTraineeId = 1;
 
-    public PlanPanel() {
+    public PlanPanel(fitwell.service.training.TrainingPlanService planService) {
+        this.planService = planService;
         setLayout(new BorderLayout(12, 12));
         setOpaque(true);
         setBackground(FWTheme.DASH_BG);

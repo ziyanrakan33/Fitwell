@@ -37,9 +37,12 @@ public class SignUpDialog extends JDialog {
     private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
     private final TraineeRepository traineeRepo = new JdbcTraineeRepository();
 
-    public SignUpDialog(Window owner, String role) {
+    private final AuthenticationService authenticationService;
+
+    public SignUpDialog(Window owner, String role, AuthenticationService authenticationService) {
         super(owner, "Sign Up — " + capitalize(role), ModalityType.APPLICATION_MODAL);
         this.role = role;
+        this.authenticationService = authenticationService;
         setSize(440, 580);
         setResizable(false);
         setLocationRelativeTo(owner);
@@ -216,7 +219,7 @@ public class SignUpDialog extends JDialog {
             PreferredUpdateMethod method = (PreferredUpdateMethod) updateMethodCombo.getSelectedItem();
             Trainee t = new Trainee(null, firstName, lastName, phone, email, password, method);
             int newId = traineeRepo.insert(t);
-            AuthenticationService.getInstance().login(newId, "trainee", firstName + " " + lastName);
+            authenticationService.login(newId, "trainee", firstName + " " + lastName);
         }
 
         signedUp = true;

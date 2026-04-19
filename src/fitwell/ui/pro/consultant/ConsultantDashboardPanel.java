@@ -1,10 +1,9 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.service.auth.AuthenticationService;
+import fitwell.app.ApplicationContext;
 import fitwell.service.emergency.EmergencyAlertService;
 import fitwell.service.equipment.EquipmentImportService;
 import fitwell.service.equipment.EquipmentReviewService;
-import fitwell.control.FitWellServiceRegistry;
 import fitwell.service.equipment.InspectionWorkflowService;
 import fitwell.domain.user.Consultant;
 import fitwell.domain.emergency.EmergencyAlert;
@@ -38,7 +37,7 @@ import java.util.List;
 
 public class ConsultantDashboardPanel extends JPanel {
     private final AppShellFrame shell;
-    private final FitWellServiceRegistry services = FitWellServiceRegistry.getInstance();
+    private final ApplicationContext context;
 
     private final CardLayout contentLayout = new CardLayout();
     private final JPanel contentPanel = new JPanel(contentLayout);
@@ -91,16 +90,23 @@ public class ConsultantDashboardPanel extends JPanel {
     };
     private final JTable approvalsTable = new JTable(approvalsModel);
 
-    private final EmergencyAlertService emergencyAlertService = services.emergencyAlertService();
-    private final EquipmentImportService equipmentImportService = services.equipmentImportService();
-    private final EquipmentReviewService equipmentReviewService = services.equipmentReviewService();
-    private final InspectionWorkflowService inspectionWorkflowService = services.inspectionWorkflowService();
-    private final EquipmentManagementController equipmentManagementController = services.equipmentManagementController();
+    private final EmergencyAlertService emergencyAlertService;
+    private final EquipmentImportService equipmentImportService;
+    private final EquipmentReviewService equipmentReviewService;
+    private final InspectionWorkflowService inspectionWorkflowService;
+    private final EquipmentManagementController equipmentManagementController;
 
-    private final ConsultantProfilePanel consultantProfilePanel = new ConsultantProfilePanel();
+    private final ConsultantProfilePanel consultantProfilePanel;
 
-    public ConsultantDashboardPanel(AppShellFrame shell) {
+    public ConsultantDashboardPanel(AppShellFrame shell, ApplicationContext context) {
         this.shell = shell;
+        this.context = context;
+        this.emergencyAlertService = context.emergencyAlertService();
+        this.equipmentImportService = context.equipmentImportService();
+        this.equipmentReviewService = context.equipmentReviewService();
+        this.inspectionWorkflowService = context.inspectionWorkflowService();
+        this.equipmentManagementController = context.equipmentManagementController();
+        this.consultantProfilePanel = new ConsultantProfilePanel(context.authenticationService());
         setLayout(new BorderLayout());
         setBackground(FWTheme.DASH_BG);
         configureViews();
@@ -166,7 +172,7 @@ public class ConsultantDashboardPanel extends JPanel {
         JLabel logo = new JLabel("FitWell");
         logo.setForeground(FWTheme.TEXT_PRIMARY);
         logo.setFont(new Font("SansSerif", Font.BOLD, 20));
-        fitwell.domain.user.ConsultantRole consultantRole = AuthenticationService.getInstance().getCurrentConsultantRole();
+        fitwell.domain.user.ConsultantRole consultantRole = context.authenticationService().getCurrentConsultantRole();
         String roleLabel = consultantRole != null ? consultantRole.name() : "Consultant";
         JLabel role = new JLabel(roleLabel);
         role.setForeground(FWTheme.TEXT_SECONDARY);
@@ -201,7 +207,7 @@ public class ConsultantDashboardPanel extends JPanel {
         nav.add(btnReports);
         nav.add(Box.createVerticalStrut(6));
         nav.add(btnAlerts);
-        if (AuthenticationService.getInstance().isManager()) {
+        if (context.authenticationService().isManager()) {
             nav.add(Box.createVerticalStrut(6));
             nav.add(btnApprovals);
         }
@@ -218,17 +224,18 @@ public class ConsultantDashboardPanel extends JPanel {
         contentPanel.setBackground(FWTheme.DASH_BG);
         contentPanel.add(buildDashboardHome(), "dashboard");
         contentPanel.add(new ConsultantClassesPanel(
-                services.trainingClassService(),
-                services.trainingClassQueryService(),
-                services.attendanceService(),
-                services.lowAttendanceReportService(),
-                services.equipmentAssignmentController(),
-                services.inspectionWorkflowService()), "classes");
-        contentPanel.add(new ConsultantTraineesPanel(), "trainees");
-        contentPanel.add(new ConsultantPlansPanel(), "plans");
+                context.trainingClassService(),
+                context.trainingClassQueryService(),
+                context.attendanceService(),
+                context.lowAttendanceReportService(),
+                context.equipmentAssignmentController(),
+                context.inspectionWorkflowService(),
+                context.authenticationService()), "classes");
+        contentPanel.add(new ConsultantTraineesPanel(context.traineeProfileService()), "trainees");
+        contentPanel.add(new ConsultantPlansPanel(context.trainingPlanService(), context.traineeProfileService(), context.trainingClassService()), "plans");
         contentPanel.add(buildEquipmentPanel(), "equipment");
-        contentPanel.add(new ProReportsPanel(services.inventoryReportController(),
-                services.lowAttendanceReportService(), () -> selectTab("equipment")), "reports");
+        contentPanel.add(new ProReportsPanel(context.inventoryReportController(),
+                context.lowAttendanceReportService(), () -> selectTab("equipment")), "reports");
         contentPanel.add(buildAlertsPanel(), "alerts");
         contentPanel.add(buildApprovalsPanel(), "approvals");
         contentPanel.add(consultantProfilePanel, "profile");
@@ -742,7 +749,7 @@ public class ConsultantDashboardPanel extends JPanel {
 
         EquipmentInspection inspection = inspectionWorkflowService.inspectEquipment(
                 trainingClass.getClassId(), selectedEquipment.getSerialNumber(),
-                AuthenticationService.getInstance().getCurrentUserId(), severity, reason);
+                context.authenticationService().getCurrentUserId(), severity, reason);
         String severityAction = severity.requiresReschedule() ? "Class SUSPENDED for rescheduling" : "Class proceeds with LIMITED FUNCTIONALITY";
         addAlert("Inspection: class=" + inspection.getClassId()
                 + " | equipment=" + inspection.getEquipmentSerial()
@@ -777,15 +784,15 @@ public class ConsultantDashboardPanel extends JPanel {
     }
 
     public void refreshStats() {
-        String name = AuthenticationService.getInstance().getCurrentUserName();
+        String name = context.authenticationService().getCurrentUserName();
         welcomeTitle.setText("Welcome, " + (name != null ? name : "Consultant"));
 
         emergencyAlertService.autoResumeIfDue();
-        statActiveClasses.setValue(String.valueOf(services.trainingClassService().getAllClasses().size()));
+        statActiveClasses.setValue(String.valueOf(context.trainingClassService().getAllClasses().size()));
         statActiveClasses.setSubText(emergencyAlertService.isEmergencyActive() ? "suspended by emergency" : "current schedule");
         statEquipmentAlerts.setValue(String.valueOf(equipmentReviewService.getFlaggedEquipment().size()));
         statEquipmentAlerts.setSubText("flagged review items");
-        statRegistrations.setValue(String.valueOf(services.registrationRepository().findAll().size()));
+        statRegistrations.setValue(String.valueOf(context.registrationRepository().findAll().size()));
         statRegistrations.setSubText("registration records");
         reloadEquipment();
         consultantProfilePanel.reload();

@@ -30,9 +30,12 @@ public class LoginDialog extends JDialog {
     private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
     private final TraineeRepository traineeRepo = new JdbcTraineeRepository();
 
-    public LoginDialog(Window owner, String role) {
+    private final AuthenticationService authenticationService;
+
+    public LoginDialog(Window owner, String role, AuthenticationService authenticationService) {
         super(owner, "Login — " + capitalize(role), ModalityType.APPLICATION_MODAL);
         this.role = role;
+        this.authenticationService = authenticationService;
         setSize(420, 370);
         setResizable(false);
         setLocationRelativeTo(owner);
@@ -166,7 +169,7 @@ public class LoginDialog extends JDialog {
             return;
         }
 
-        AuthenticationService auth = AuthenticationService.getInstance();
+        AuthenticationService auth = authenticationService;
 
         if ("consultant".equals(role)) {
             Consultant c = consultantRepo.authenticate(email, password);
@@ -195,7 +198,7 @@ public class LoginDialog extends JDialog {
 
     private void openSignUp() {
         dispose();
-        SignUpDialog signUpDialog = new SignUpDialog(getOwner(), role);
+        SignUpDialog signUpDialog = new SignUpDialog(getOwner(), role, authenticationService);
         signUpDialog.setVisible(true);
         if (signUpDialog.isSignedUp()) {
             authenticated = true;

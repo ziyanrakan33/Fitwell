@@ -1,7 +1,6 @@
 package fitwell.ui.pro.trainee;
 
-import fitwell.service.auth.AuthenticationService;
-import fitwell.control.FitWellServiceRegistry;
+import fitwell.app.ApplicationContext;
 import fitwell.ui.pro.AppShellFrame;
 import fitwell.ui.pro.components.SidebarButton;
 import fitwell.ui.pro.components.StatCard;
@@ -27,15 +26,18 @@ public class TraineeDashboardPanel extends JPanel {
 
     private final JLabel welcomeTitle = new JLabel("Welcome, Trainee!");
 
-    private final FitWellServiceRegistry services = FitWellServiceRegistry.getInstance();
-    private final TraineeClassRegistrationPanel traineeClassRegistrationPanel =
-            new TraineeClassRegistrationPanel(services.trainingClassQueryService(), services.traineeProfileService(), new fitwell.controller.RegistrationController());
-    private final TrainingPlanPanel trainingPlanPanel =
-            new TrainingPlanPanel(services.trainingPlanService(), services.traineeProfileService());
-    private final TraineeProfilePanel traineeProfilePanel =
-            new TraineeProfilePanel(services.traineeProfileService());
+    private final ApplicationContext context;
+    private final TraineeClassRegistrationPanel traineeClassRegistrationPanel;
+    private final TrainingPlanPanel trainingPlanPanel;
+    private final TraineeProfilePanel traineeProfilePanel;
 
-    public TraineeDashboardPanel(AppShellFrame shell) {
+    public TraineeDashboardPanel(AppShellFrame shell, ApplicationContext context) {
+        this.context = context;
+        this.traineeClassRegistrationPanel = new TraineeClassRegistrationPanel(
+                context.trainingClassQueryService(), context.traineeProfileService(),
+                context.registrationController(), context.registrationRepository());
+        this.trainingPlanPanel = new TrainingPlanPanel(context.trainingPlanService(), context.traineeProfileService(), context.trainingClassService());
+        this.traineeProfilePanel = new TraineeProfilePanel(context.traineeProfileService());
         setLayout(new BorderLayout());
         setBackground(FWTheme.DASH_BG);
 
@@ -203,14 +205,14 @@ public class TraineeDashboardPanel extends JPanel {
     }
 
     public void refreshStats() {
-        String name = AuthenticationService.getInstance().getCurrentUserName();
+        String name = context.authenticationService().getCurrentUserName();
         welcomeTitle.setText("Welcome, " + (name != null ? name : "Trainee") + "!");
 
-        int traineeId = services.traineeProfileService().getCurrentTrainee().getId();
-        statUpcoming.setValue(String.valueOf(services.trainingClassQueryService().countUpcomingClassesForTrainee(traineeId)));
+        int traineeId = context.traineeProfileService().getCurrentTrainee().getId();
+        statUpcoming.setValue(String.valueOf(context.trainingClassQueryService().countUpcomingClassesForTrainee(traineeId)));
         statUpcoming.setSubText("assigned classes");
 
-        statAvailable.setValue(String.valueOf(services.trainingClassQueryService().countAvailableClassesForTrainee(traineeId)));
+        statAvailable.setValue(String.valueOf(context.trainingClassQueryService().countAvailableClassesForTrainee(traineeId)));
         statAvailable.setSubText("eligible and open");
 
         statStatus.setValue("Ready");

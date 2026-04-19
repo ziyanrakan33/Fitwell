@@ -1,6 +1,5 @@
 package fitwell.ui.pro.trainee;
 
-import fitwell.control.FitWellServiceRegistry;
 import fitwell.service.training.TraineeProfileService;
 import fitwell.service.training.TrainingClassService;
 import fitwell.service.training.TrainingPlanService;
@@ -26,10 +25,10 @@ public class TrainingPlanPanel extends JPanel {
     private final TrainingClassService trainingClassService;
     private final JPanel content = new JPanel();
 
-    public TrainingPlanPanel(TrainingPlanService trainingPlanService, TraineeProfileService traineeProfileService) {
+    public TrainingPlanPanel(TrainingPlanService trainingPlanService, TraineeProfileService traineeProfileService, TrainingClassService trainingClassService) {
         this.trainingPlanService = trainingPlanService;
         this.traineeProfileService = traineeProfileService;
-        this.trainingClassService = FitWellServiceRegistry.getInstance().trainingClassService();
+        this.trainingClassService = trainingClassService;
         setLayout(new BorderLayout(12, 12));
         setBackground(FWTheme.DASH_BG);
         setOpaque(true);

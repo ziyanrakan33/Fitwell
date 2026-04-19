@@ -9,9 +9,11 @@ import java.util.List;
 
 public class TraineeProfileService {
     private final TraineeRepository traineeRepository;
+    private final AuthenticationService authenticationService;
 
-    public TraineeProfileService(TraineeRepository traineeRepository) {
+    public TraineeProfileService(TraineeRepository traineeRepository, AuthenticationService authenticationService) {
         this.traineeRepository = traineeRepository;
+        this.authenticationService = authenticationService;
     }
 
     public List<Trainee> getAllTrainees() {
@@ -19,8 +21,8 @@ public class TraineeProfileService {
     }
 
     public Trainee getCurrentTrainee() {
-        AuthenticationService auth = AuthenticationService.getInstance();
-        if (auth.isLoggedIn() && "trainee".equals(auth.getCurrentRole())) {
+        AuthenticationService auth = authenticationService;
+        if (auth != null && auth.isLoggedIn() && "trainee".equals(auth.getCurrentRole())) {
             Trainee loggedIn = traineeRepository.findById(auth.getCurrentUserId());
             if (loggedIn != null) {
                 return loggedIn;

@@ -1,6 +1,6 @@
 package fitwell.ui.pro;
 
-import fitwell.service.auth.AuthenticationService;
+import fitwell.app.ApplicationContext;
 import fitwell.ui.pro.consultant.ConsultantDashboardPanel;
 import fitwell.ui.pro.trainee.TraineeDashboardPanel;
 
@@ -9,6 +9,7 @@ import java.awt.*;
 
 public class AppShellFrame extends JFrame {
 
+    private final ApplicationContext context;
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel root = new JPanel(cardLayout);
 
@@ -20,16 +21,17 @@ public class AppShellFrame extends JFrame {
     public static final String CARD_CONSULTANT = "consultantDashboard";
     public static final String CARD_TRAINEE = "traineeDashboard";
 
-    public AppShellFrame() {
+    public AppShellFrame(ApplicationContext context) {
         super("FitWell");
+        this.context = context;
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1280, 820));
         setSize(1440, 900);
         setLocationRelativeTo(null);
 
-        roleSelectionPanel = new RoleSelectionPanel(this);
-        consultantDashboardPanel = new ConsultantDashboardPanel(this);
-        traineeDashboardPanel = new TraineeDashboardPanel(this);
+        roleSelectionPanel = new RoleSelectionPanel(this, context.authenticationService());
+        consultantDashboardPanel = new ConsultantDashboardPanel(this, context);
+        traineeDashboardPanel = new TraineeDashboardPanel(this, context);
 
         root.add(roleSelectionPanel, CARD_ROLE_SELECTION);
         root.add(consultantDashboardPanel, CARD_CONSULTANT);
@@ -54,7 +56,7 @@ public class AppShellFrame extends JFrame {
     }
 
     public void logout() {
-        AuthenticationService.getInstance().logout();
+        context.authenticationService().logout();
         showRoleSelection();
     }
 }

@@ -1,5 +1,6 @@
 package fitwell.ui.pro;
 
+import fitwell.service.auth.AuthenticationService;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 
@@ -12,9 +13,11 @@ import java.awt.event.MouseEvent;
 public class RoleSelectionPanel extends JPanel {
 
     private final AppShellFrame shell;
+    private final AuthenticationService authenticationService;
 
-    public RoleSelectionPanel(AppShellFrame shell) {
+    public RoleSelectionPanel(AppShellFrame shell, AuthenticationService authenticationService) {
         this.shell = shell;
+        this.authenticationService = authenticationService;
         setLayout(new GridBagLayout());
         setBackground(FWTheme.ENTRY_BG);
 
@@ -77,7 +80,7 @@ public class RoleSelectionPanel extends JPanel {
     }
 
     private void loginAndNavigate(String role, Runnable onSuccess) {
-        LoginDialog dialog = new LoginDialog(SwingUtilities.getWindowAncestor(this), role);
+        LoginDialog dialog = new LoginDialog(SwingUtilities.getWindowAncestor(this), role, authenticationService);
         dialog.setVisible(true);
         if (dialog.isAuthenticated()) {
             onSuccess.run();

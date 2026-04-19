@@ -21,7 +21,10 @@ public class ConsultantProfilePanel extends JPanel {
     private final JPasswordField newPasswordField = new JPasswordField();
     private final JPasswordField confirmPasswordField = new JPasswordField();
 
-    public ConsultantProfilePanel() {
+    private final AuthenticationService authenticationService;
+
+    public ConsultantProfilePanel(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
         setLayout(new BorderLayout());
         setBackground(FWTheme.DASH_BG);
 
@@ -94,7 +97,7 @@ public class ConsultantProfilePanel extends JPanel {
     }
 
     private void loadProfile() {
-        int currentId = AuthenticationService.getInstance().getCurrentUserId();
+        int currentId = authenticationService.getCurrentUserId();
         if (currentId != -1) {
             Consultant fromDb = consultantRepo.findById(currentId);
             if (fromDb != null) {
@@ -108,7 +111,7 @@ public class ConsultantProfilePanel extends JPanel {
     }
 
     private void saveProfile() {
-        int currentId = AuthenticationService.getInstance().getCurrentUserId();
+        int currentId = authenticationService.getCurrentUserId();
         if (currentId == -1) return;
         
         Consultant c = consultantRepo.findById(currentId);

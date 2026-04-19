@@ -1,6 +1,5 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.FitWellServiceRegistry;
 import fitwell.service.training.TrainingClassService;
 import fitwell.domain.user.Consultant;
 import fitwell.domain.training.TrainingClass;
@@ -24,7 +23,8 @@ import java.util.List;
 public class ClassFormProDialog extends JDialog {
 
     private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
-    private final TrainingClass editingClass; // null => add mode
+    private final TrainingClass editingClass;
+    private final TrainingClassService trainingClassService;
     private boolean saved = false;
 
     private JTextField nameField;
@@ -47,9 +47,11 @@ public class ClassFormProDialog extends JDialog {
 
     public ClassFormProDialog(Window owner,
                               TrainingClassRepository trainingClassRepo,
-                              TrainingClass editingClass) {
+                              TrainingClass editingClass,
+                              TrainingClassService trainingClassService) {
         super(owner, editingClass == null ? "Add Class" : "Edit Class", ModalityType.APPLICATION_MODAL);
         this.editingClass = editingClass;
+        this.trainingClassService = trainingClassService;
 
         buildUi();
         loadConsultants();
@@ -437,7 +439,7 @@ public class ClassFormProDialog extends JDialog {
                 }
             }
 
-            TrainingClassService classService = FitWellServiceRegistry.getInstance().trainingClassService();
+            TrainingClassService classService = trainingClassService;
             if (editingClass == null) {
                 TrainingClass newClass = new TrainingClass(
                         null, name, start, end, type, max, consultantId
