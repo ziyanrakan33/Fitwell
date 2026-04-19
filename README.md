@@ -31,28 +31,66 @@ Built with **Java Swing**, **MS Access (UCanAccess)**, and **JasperReports**.
 ```
 Druzelegends/
 ├── src/fitwell/
-│   ├── control/        # Business logic & services
-│   ├── entity/         # Domain models & enums
-│   ├── repo/           # Data access (UCanAccess / MS Access)
-│   ├── integration/    # SwiftFit gateway, AI extraction
-│   ├── ui/pro/         # Swing UI — consultant & trainee dashboards
-│   ├── util/           # JSON parser, XML builder, file utilities
-│   ├── db/             # DB connection & migrations
-│   └── config/         # App paths configuration
-├── lib/                # External JARs (JasperReports, UCanAccess, etc.)
+│   ├── app/                    # Entry point (App.java) & DI container (ApplicationContext)
+│   ├── domain/                 # Domain models & enums
+│   │   ├── user/               #   Consultant, Trainee, ConsultantRole
+│   │   ├── training/           #   TrainingClass, Plan, PlanStatus, ...
+│   │   ├── registration/       #   ClassRegistration, AttendanceStatus
+│   │   ├── equipment/          #   Equipment, EquipmentInspection, ...
+│   │   ├── emergency/          #   EmergencyAlert
+│   │   ├── reports/            #   LowAttendanceRecord, ExtractionResult
+│   │   └── shared/             #   DietaryRestriction, PreferredUpdateMethod
+│   ├── persistence/            # Data access layer
+│   │   ├── api/                #   Repository interfaces
+│   │   ├── jdbc/               #   JDBC / UCanAccess implementations
+│   │   └── db/                 #   Db connection & DbMigration
+│   ├── service/                # Business logic
+│   │   ├── auth/               #   AuthenticationService
+│   │   ├── training/           #   TrainingClassService, TrainingPlanService, ...
+│   │   ├── attendance/         #   AttendanceService, LowAttendanceReportService
+│   │   ├── equipment/          #   EquipmentReviewService, EquipmentImportService, ...
+│   │   └── emergency/          #   EmergencyAlertService
+│   ├── controller/             # UI-facing controllers
+│   ├── integration/            # External system integrations
+│   │   ├── ai/                 #   ImageExtractionService, ClaudeExtractionService
+│   │   ├── swiftfit/           #   SwiftFitGateway
+│   │   └── notification/       #   NotificationGateway
+│   ├── ui/                     # Swing UI
+│   │   ├── shell/              #   AppShellFrame, LoginDialog, SignUpDialog, RoleSelectionPanel
+│   │   ├── consultant/         #   ConsultantDashboardPanel
+│   │   ├── consultant/panels/  #   All consultant sub-panels & dialogs
+│   │   ├── trainee/            #   TraineeDashboardPanel
+│   │   ├── trainee/panels/     #   All trainee sub-panels
+│   │   ├── components/         #   StatCard, SidebarButton, TopBarPanel, ProTextBlocks
+│   │   └── theme/              #   FWTheme, FWUi
+│   ├── util/                   # JSON parser, XML builder, file utilities
+│   └── config/                 # App paths configuration
+├── lib/                        # External JARs (JasperReports, UCanAccess, etc.)
 ├── dist/
-│   ├── db/             # fitwell_2.accdb — MS Access database
-│   ├── reports/        # JRXML templates
-│   └── RunFitWell.bat  # Windows launcher
-├── sample-data/        # Sample JSON & XML files for import/testing
+│   ├── db/                     # fitwell_2.accdb — MS Access database
+│   ├── reports/                # JRXML templates
+│   └── RunFitWell.bat          # Windows launcher
+├── sample-data/                # Sample JSON & XML files for import/testing
 └── README.md
 ```
 
 ---
 
+## Architecture
+
+The project follows a clean layered architecture:
+
+```
+app → ui → controller → service → persistence → domain
+```
+
+Each layer depends only on the layer below it. Dependency injection is handled manually via `ApplicationContext`, which wires all repositories and services at startup.
+
+---
+
 ## Requirements
 
-- **Java 17+** (uses records, switch expressions)
+- **Java 21** (compiled with `--release 21`)
 - **Eclipse IDE** or any Java IDE with classpath support
 - **Windows** recommended (MS Access via UCanAccess; `.bat` launcher)
 
@@ -62,13 +100,19 @@ Druzelegends/
 
 ### From Eclipse
 1. Import as existing Java project
-2. Set JRE to Java 17+
-3. Run `fitwell.App` as Java Application
+2. Set JRE to Java 21
+3. Run `fitwell.app.App` as Java Application
 
 ### From command line
 ```bat
 cd dist
 RunFitWell.bat
+```
+
+### Manual compile
+```bash
+find src -name "*.java" > /tmp/sources.txt
+javac --release 21 -cp "lib/*" -d bin @/tmp/sources.txt
 ```
 
 ---
@@ -79,7 +123,7 @@ The `ImageExtractionService` runs as a smart stub by default — it derives equi
 
 To activate **real Claude API extraction**:
 1. Set environment variable: `CLAUDE_API_KEY=<your-anthropic-key>`
-2. See `src/fitwell/integration/ClaudeExtractionService.java` for the ready-to-use skeleton
+2. See `src/fitwell/integration/ai/ClaudeExtractionService.java` for the ready-to-use skeleton
 
 ---
 
@@ -95,7 +139,7 @@ Import SwiftFit equipment updates via `Equipment → Import JSON` using files in
 | Layer | Technology |
 |-------|-----------|
 | UI | Java Swing (dark theme) |
-| Database | MS Access via UCanAccess 3.x |
+| Database | MS Access via UCanAccess 5.x |
 | Reports | JasperReports 6.21 |
-| Build | Eclipse / manual javac |
+| Build | Manual javac (`--release 21`) |
 | AI Integration | Claude API skeleton (Anthropic) |
