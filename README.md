@@ -117,16 +117,6 @@ javac --release 21 -cp "lib/*" -d bin @/tmp/sources.txt
 
 ---
 
-## AI Equipment Extraction
-
-The `ImageExtractionService` runs as a smart stub by default — it derives equipment name and category from the image URL path segments.
-
-To activate **real Claude API extraction**:
-1. Set environment variable: `CLAUDE_API_KEY=<your-anthropic-key>`
-2. See `src/fitwell/integration/ai/ClaudeExtractionService.java` for the ready-to-use skeleton
-
----
-
 ## Sample Data
 
 Import SwiftFit equipment updates via `Equipment → Import JSON` using files in `sample-data/`:
