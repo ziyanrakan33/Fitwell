@@ -7,6 +7,7 @@ import fitwell.ui.trainee.TraineeDashboardPanel;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings({"serial","this-escape"})
 public class AppShellFrame extends JFrame {
 
     private final ApplicationContext context;

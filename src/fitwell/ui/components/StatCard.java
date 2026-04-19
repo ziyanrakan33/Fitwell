@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+@SuppressWarnings({"serial","this-escape"})
 public class StatCard extends JPanel {
 
     private final JLabel valueLabel = new JLabel("0");

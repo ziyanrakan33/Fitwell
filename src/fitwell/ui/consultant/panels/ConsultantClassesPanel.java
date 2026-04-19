@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class ConsultantClassesPanel extends JPanel {
     private final TrainingClassService trainingClassService;
     private final TrainingClassQueryService trainingClassQueryService;
@@ -393,6 +394,7 @@ public class ConsultantClassesPanel extends JPanel {
         JOptionPane.showMessageDialog(this, message, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    @SuppressWarnings({"serial","this-escape"})
     private static class JLabelStyled extends JLabel {
         JLabelStyled(String text) {
             super(text);

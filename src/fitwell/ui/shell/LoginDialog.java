@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings({"serial","this-escape"})
 public class LoginDialog extends JDialog {
 
     private final String role;

@@ -12,6 +12,7 @@ import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class ClassDetailsProDialog extends JDialog {
 
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

@@ -13,6 +13,7 @@ import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class PlanPanel extends JPanel {
 
     private final fitwell.service.training.TrainingPlanService planService;

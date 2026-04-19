@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 
+@SuppressWarnings({"serial","this-escape"})
 public class EquipmentInventoryReportProDialog extends JDialog {
 
     private final InventoryReportController inventoryReportController;

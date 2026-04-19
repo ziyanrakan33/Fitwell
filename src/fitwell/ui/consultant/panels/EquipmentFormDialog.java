@@ -14,6 +14,7 @@ import fitwell.domain.equipment.EquipmentLocation;
 import fitwell.domain.equipment.EquipmentStatus;
 import fitwell.ui.theme.FWTheme;
 
+@SuppressWarnings({"serial","this-escape"})
 public class EquipmentFormDialog extends JDialog {
 
     public enum Mode { ADD, UPDATE }

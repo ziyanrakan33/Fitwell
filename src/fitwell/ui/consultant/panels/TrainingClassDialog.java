@@ -17,6 +17,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class TrainingClassDialog extends JDialog {
     private final TrainingClassService trainingClassService;
     private final ConsultantRepository consultantRepository = new JdbcConsultantRepository();
@@ -242,6 +243,7 @@ public class TrainingClassDialog extends JDialog {
         }
     }
 
+    @SuppressWarnings({"serial","this-escape"})
     private static class ConsultantItem {
         private final int id;
         private final String label;

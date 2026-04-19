@@ -9,6 +9,7 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@SuppressWarnings({"serial","this-escape"})
 public class EmergencyControlCenterCard extends JPanel {
 
     private final JLabel statusValue = new JLabel("NORMAL");

@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
+@SuppressWarnings({"serial","this-escape"})
 public class JasperPdfReportProDialog extends JDialog {
 
     private final JasperReportController jasperController = new JasperReportController();

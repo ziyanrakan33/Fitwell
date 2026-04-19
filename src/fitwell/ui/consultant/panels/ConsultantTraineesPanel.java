@@ -13,6 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class ConsultantTraineesPanel extends JPanel {
     private final TraineeProfileService traineeProfileService;
 
@@ -129,6 +130,7 @@ public class ConsultantTraineesPanel extends JPanel {
         return visibleTrainees.get(row);
     }
 
+    @SuppressWarnings({"serial","this-escape"})
     static class TraineeFormDialog extends JDialog {
         private final TraineeProfileService service;
         private final Trainee editing;

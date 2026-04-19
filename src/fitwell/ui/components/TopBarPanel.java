@@ -6,6 +6,7 @@ import fitwell.ui.theme.FWUi;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings({"serial","this-escape"})
 public class TopBarPanel extends JPanel {
 
     private final JLabel titleLabel = new JLabel("Dashboard");

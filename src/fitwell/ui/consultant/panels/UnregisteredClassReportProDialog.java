@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class UnregisteredClassReportProDialog extends JDialog {
     private final LowAttendanceReportService lowAttendanceReportService;
 

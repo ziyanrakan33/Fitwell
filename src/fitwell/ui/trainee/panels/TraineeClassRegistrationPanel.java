@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class TraineeClassRegistrationPanel extends JPanel {
     private final TrainingClassQueryService trainingClassQueryService;
     private final TraineeProfileService traineeProfileService;

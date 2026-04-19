@@ -10,6 +10,7 @@ import fitwell.ui.theme.FWUi;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings({"serial","this-escape"})
 public class ConsultantProfilePanel extends JPanel {
     private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
 

@@ -20,6 +20,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class ClassFormProDialog extends JDialog {
 
     private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
@@ -595,6 +596,7 @@ public class ClassFormProDialog extends JDialog {
     }
 
     // ===== inner model =====
+    @SuppressWarnings({"serial","this-escape"})
     private static class ConsultantItem {
         final int id;
         final String displayName;

@@ -5,6 +5,7 @@ import fitwell.ui.theme.FWTheme;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings({"serial","this-escape"})
 public class SidebarButton extends JButton {
     private boolean selected = false;
 

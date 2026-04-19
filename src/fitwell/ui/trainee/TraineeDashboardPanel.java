@@ -12,6 +12,7 @@ import fitwell.ui.trainee.panels.*;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings({"serial","this-escape"})
 public class TraineeDashboardPanel extends JPanel {
     private final CardLayout contentLayout = new CardLayout();
     private final JPanel contentPanel = new JPanel(contentLayout);

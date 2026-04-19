@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings({"serial","this-escape"})
 public class ConsultantPlansPanel extends JPanel {
     private final TrainingPlanService planService;
     private final TraineeProfileService traineeProfileService;
@@ -281,6 +282,7 @@ public class ConsultantPlansPanel extends JPanel {
     }
 
     // ===== Plan Create / Edit Dialog =====
+    @SuppressWarnings({"serial","this-escape"})
     static class PlanFormDialog extends JDialog {
         private final TrainingPlanService planService;
         private final boolean personal;
@@ -516,6 +518,7 @@ public class ConsultantPlansPanel extends JPanel {
     }
 
     // ===== Member Management Dialog (Group Plans) =====
+    @SuppressWarnings({"serial","this-escape"})
     static class MemberManagementDialog extends JDialog {
         private final int planId;
         private final TrainingPlanService planService;
@@ -628,6 +631,7 @@ public class ConsultantPlansPanel extends JPanel {
     }
 
     // ===== Class Assignment Dialog =====
+    @SuppressWarnings({"serial","this-escape"})
     static class ClassAssignmentDialog extends JDialog {
         private final int planId;
         private final TrainingPlanService planService;

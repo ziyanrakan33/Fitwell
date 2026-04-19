@@ -18,6 +18,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+@SuppressWarnings({"serial","this-escape"})
 public class SignUpDialog extends JDialog {
 
     private final String role;

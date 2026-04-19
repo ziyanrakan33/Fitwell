@@ -37,6 +37,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@SuppressWarnings({"serial","this-escape"})
 public class ConsultantDashboardPanel extends JPanel {
     private final AppShellFrame shell;
     private final ApplicationContext context;

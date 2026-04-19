@@ -9,6 +9,7 @@ import fitwell.ui.theme.FWUi;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings({"serial","this-escape"})
 public class TraineeProfilePanel extends JPanel {
     private final TraineeProfileService traineeProfileService;
 
