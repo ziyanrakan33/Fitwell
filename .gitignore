@@ -16,11 +16,10 @@ sources.txt
 sources_build.txt
 manifest.txt
 hs_err_pid*.log
+replay_pid*.log
 
-# Root-level leftover class files
-GenerateData.class
-InspectDB.class
-AssignRandomEquipment.class
+# Auto-generated manifest
+META-INF/
 
 # Compiled Jasper reports (generated at runtime)
 dist/reports/*.jasper
