@@ -1,6 +1,6 @@
 package fitwell;
 
-import fitwell.control.EquipmentAssignmentController;
+import fitwell.controller.EquipmentAssignmentController;
 import fitwell.control.FitWellServiceRegistry;
 import fitwell.domain.equipment.Equipment;
 import fitwell.domain.training.TrainingClass;

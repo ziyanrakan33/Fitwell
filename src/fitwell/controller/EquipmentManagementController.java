@@ -1,4 +1,4 @@
-package fitwell.control;
+package fitwell.controller;
 
 import java.time.LocalDateTime;
 

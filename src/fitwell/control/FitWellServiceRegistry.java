@@ -30,6 +30,22 @@ import fitwell.persistence.jdbc.JdbcRegistrationRepository;
 import fitwell.persistence.jdbc.JdbcTraineeRepository;
 import fitwell.persistence.jdbc.JdbcTrainingClassRepository;
 import fitwell.persistence.jdbc.JdbcTrainingPlanRepository;
+import fitwell.service.auth.AuthenticationService;
+import fitwell.service.attendance.AttendanceService;
+import fitwell.service.attendance.LowAttendanceReportService;
+import fitwell.service.emergency.EmergencyAlertService;
+import fitwell.service.equipment.EquipmentAvailabilityService;
+import fitwell.service.equipment.EquipmentImportService;
+import fitwell.service.equipment.EquipmentReviewService;
+import fitwell.service.equipment.InspectionWorkflowService;
+import fitwell.service.training.TraineeProfileService;
+import fitwell.service.training.TrainingClassQueryService;
+import fitwell.service.training.TrainingClassService;
+import fitwell.service.training.TrainingPlanService;
+import fitwell.controller.EquipmentAssignmentController;
+import fitwell.controller.EquipmentAvailabilityController;
+import fitwell.controller.EquipmentManagementController;
+import fitwell.controller.InventoryReportController;
 
 public class FitWellServiceRegistry {
     private static final FitWellServiceRegistry INSTANCE = new FitWellServiceRegistry();

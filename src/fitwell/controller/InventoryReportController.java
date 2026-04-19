@@ -1,4 +1,5 @@
-package fitwell.control;
+package fitwell.controller;
+import fitwell.service.training.TrainingClassService;
 
 import java.util.List;
 

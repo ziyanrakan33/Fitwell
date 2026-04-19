@@ -1,4 +1,4 @@
-package fitwell.control;
+package fitwell.service.auth;
 
 import fitwell.domain.user.ConsultantRole;
 

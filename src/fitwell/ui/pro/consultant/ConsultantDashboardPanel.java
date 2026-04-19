@@ -1,11 +1,11 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.AuthenticationService;
-import fitwell.control.EmergencyAlertService;
-import fitwell.control.EquipmentImportService;
-import fitwell.control.EquipmentReviewService;
+import fitwell.service.auth.AuthenticationService;
+import fitwell.service.emergency.EmergencyAlertService;
+import fitwell.service.equipment.EquipmentImportService;
+import fitwell.service.equipment.EquipmentReviewService;
 import fitwell.control.FitWellServiceRegistry;
-import fitwell.control.InspectionWorkflowService;
+import fitwell.service.equipment.InspectionWorkflowService;
 import fitwell.domain.user.Consultant;
 import fitwell.domain.emergency.EmergencyAlert;
 import fitwell.domain.equipment.Equipment;
@@ -23,7 +23,7 @@ import fitwell.ui.pro.theme.FWUi;
 import fitwell.util.FileUtil;
 import fitwell.util.JsonMvpUtil;
 
-import fitwell.control.EquipmentManagementController;
+import fitwell.controller.EquipmentManagementController;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

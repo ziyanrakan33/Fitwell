@@ -1,5 +1,7 @@
-package fitwell.control;
+package fitwell.service.training;
 import fitwell.domain.training.TrainingClass;
+import fitwell.service.attendance.AttendanceService;
+import fitwell.service.emergency.EmergencyAlertService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

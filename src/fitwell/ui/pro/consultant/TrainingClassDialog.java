@@ -1,6 +1,6 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.TrainingClassService;
+import fitwell.service.training.TrainingClassService;
 import fitwell.domain.user.Consultant;
 import fitwell.domain.training.TrainingClass;
 import fitwell.persistence.api.ConsultantRepository;

@@ -1,9 +1,9 @@
 package fitwell.ui.pro.trainee;
 
 import fitwell.control.FitWellServiceRegistry;
-import fitwell.control.RegistrationController;
-import fitwell.control.TraineeProfileService;
-import fitwell.control.TrainingClassQueryService;
+import fitwell.controller.RegistrationController;
+import fitwell.service.training.TraineeProfileService;
+import fitwell.service.training.TrainingClassQueryService;
 import fitwell.domain.training.TrainingClass;
 import fitwell.persistence.api.RegistrationRepository;
 import fitwell.ui.pro.theme.FWTheme;

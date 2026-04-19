@@ -1,6 +1,6 @@
 package fitwell.ui.pro;
 
-import fitwell.control.AuthenticationService;
+import fitwell.service.auth.AuthenticationService;
 import fitwell.domain.user.Consultant;
 import fitwell.domain.user.ConsultantRole;
 import fitwell.domain.shared.PreferredUpdateMethod;

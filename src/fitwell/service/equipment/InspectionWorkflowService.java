@@ -1,4 +1,5 @@
-package fitwell.control;
+package fitwell.service.equipment;
+import fitwell.service.training.TrainingClassService;
 
 import fitwell.domain.equipment.ClassEquipmentAssignment;
 import fitwell.domain.equipment.Equipment;

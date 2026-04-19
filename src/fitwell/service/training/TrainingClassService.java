@@ -1,4 +1,4 @@
-package fitwell.control;
+package fitwell.service.training;
 
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingClassStatus;

@@ -1,7 +1,7 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.InventoryReportController;
-import fitwell.control.LowAttendanceReportService;
+import fitwell.controller.InventoryReportController;
+import fitwell.service.attendance.LowAttendanceReportService;
 import fitwell.ui.pro.components.ProTextBlocks;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;

@@ -1,6 +1,6 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.InventoryReportController;
+import fitwell.controller.InventoryReportController;
 import fitwell.ui.pro.components.ProTextBlocks;
 import fitwell.ui.pro.theme.FWTheme;
 

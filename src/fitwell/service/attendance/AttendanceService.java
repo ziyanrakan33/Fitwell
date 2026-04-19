@@ -1,10 +1,11 @@
-package fitwell.control;
+package fitwell.service.attendance;
 
 import fitwell.domain.registration.AttendanceStatus;
 import fitwell.domain.registration.ClassRegistration;
 import fitwell.domain.reports.LowAttendanceRecord;
 import fitwell.domain.user.Trainee;
 import fitwell.domain.training.TrainingClass;
+import fitwell.service.training.TrainingClassService;
 import fitwell.persistence.api.AttendanceRepository;
 import fitwell.persistence.api.RegistrationRepository;
 import fitwell.persistence.api.TraineeRepository;

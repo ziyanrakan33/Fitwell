@@ -1,4 +1,4 @@
-package fitwell.control;
+package fitwell.controller;
 
 import fitwell.domain.training.TrainingClass;
 import fitwell.persistence.api.RegistrationRepository;

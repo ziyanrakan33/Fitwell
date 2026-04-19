@@ -1,6 +1,7 @@
-package fitwell.control;
+package fitwell.controller;
 
 import fitwell.domain.training.TrainingClass;
+import fitwell.service.training.TrainingClassService;
 import fitwell.persistence.api.TrainingClassRepository;
 import fitwell.persistence.api.TrainingClassRuntimeStateRepository;
 import fitwell.persistence.jdbc.InMemoryTrainingClassRuntimeStateRepository;

@@ -1,8 +1,11 @@
-package fitwell.control;
+package fitwell.controller;
 
 import fitwell.domain.training.TrainingClass;
+import fitwell.service.training.TrainingClassService;
+import fitwell.service.emergency.EmergencyAlertService;
 import fitwell.domain.training.TrainingClassStatus;
 import fitwell.persistence.api.RegistrationRepository;
+import fitwell.control.FitWellServiceRegistry;
 
 import java.time.LocalDateTime;
 

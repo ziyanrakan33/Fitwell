@@ -1,6 +1,6 @@
 package fitwell.ui.pro;
 
-import fitwell.control.AuthenticationService;
+import fitwell.service.auth.AuthenticationService;
 import fitwell.ui.pro.consultant.ConsultantDashboardPanel;
 import fitwell.ui.pro.trainee.TraineeDashboardPanel;
 

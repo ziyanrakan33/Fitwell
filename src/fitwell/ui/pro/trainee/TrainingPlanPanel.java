@@ -1,9 +1,9 @@
 package fitwell.ui.pro.trainee;
 
 import fitwell.control.FitWellServiceRegistry;
-import fitwell.control.TraineeProfileService;
-import fitwell.control.TrainingClassService;
-import fitwell.control.TrainingPlanService;
+import fitwell.service.training.TraineeProfileService;
+import fitwell.service.training.TrainingClassService;
+import fitwell.service.training.TrainingPlanService;
 import fitwell.domain.training.GroupPlan;
 import fitwell.domain.training.PersonalPlan;
 import fitwell.domain.training.Plan;

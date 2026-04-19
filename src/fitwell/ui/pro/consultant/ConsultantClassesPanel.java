@@ -1,12 +1,12 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.AttendanceService;
-import fitwell.control.AuthenticationService;
-import fitwell.control.EquipmentAssignmentController;
-import fitwell.control.InspectionWorkflowService;
-import fitwell.control.LowAttendanceReportService;
-import fitwell.control.TrainingClassQueryService;
-import fitwell.control.TrainingClassService;
+import fitwell.service.attendance.AttendanceService;
+import fitwell.service.auth.AuthenticationService;
+import fitwell.controller.EquipmentAssignmentController;
+import fitwell.service.equipment.InspectionWorkflowService;
+import fitwell.service.attendance.LowAttendanceReportService;
+import fitwell.service.training.TrainingClassQueryService;
+import fitwell.service.training.TrainingClassService;
 import fitwell.domain.registration.AttendanceStatus;
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingClassStatus;

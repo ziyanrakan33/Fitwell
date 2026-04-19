@@ -1,4 +1,5 @@
-package fitwell.control;
+package fitwell.service.emergency;
+import fitwell.service.training.TrainingClassService;
 
 import fitwell.domain.emergency.EmergencyAlert;
 import fitwell.domain.training.TrainingClass;

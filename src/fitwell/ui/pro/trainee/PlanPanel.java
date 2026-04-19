@@ -15,7 +15,7 @@ import java.util.List;
 
 public class PlanPanel extends JPanel {
 
-    private final fitwell.control.TrainingPlanService planService = fitwell.control.FitWellServiceRegistry.getInstance().trainingPlanService();
+    private final fitwell.service.training.TrainingPlanService planService = fitwell.control.FitWellServiceRegistry.getInstance().trainingPlanService();
     private final int currentTraineeId = 1; // Assuming Trainee ID 1 for now
 
     public PlanPanel() {

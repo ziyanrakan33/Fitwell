@@ -1,4 +1,4 @@
-package fitwell.control;
+package fitwell.controller;
 
 import fitwell.config.AppPaths;
 import fitwell.persistence.db.Db;

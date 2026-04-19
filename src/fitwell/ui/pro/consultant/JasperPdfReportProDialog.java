@@ -1,6 +1,6 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.JasperReportController;
+import fitwell.controller.JasperReportController;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 

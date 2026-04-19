@@ -1,6 +1,6 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.InspectionWorkflowService;
+import fitwell.service.equipment.InspectionWorkflowService;
 import fitwell.domain.equipment.Equipment;
 import fitwell.domain.training.TrainingClass;
 import fitwell.ui.pro.theme.FWTheme;

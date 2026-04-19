@@ -1,6 +1,7 @@
-package fitwell.control;
+package fitwell.service.training;
 
 import fitwell.domain.shared.PreferredUpdateMethod;
+import fitwell.service.auth.AuthenticationService;
 import fitwell.domain.user.Trainee;
 import fitwell.persistence.api.TraineeRepository;
 

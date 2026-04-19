@@ -1,4 +1,4 @@
-package fitwell.control;
+package fitwell.service.equipment;
 
 import fitwell.domain.equipment.EquipmentAssignment;
 import fitwell.persistence.api.EquipmentAssignmentRepository;

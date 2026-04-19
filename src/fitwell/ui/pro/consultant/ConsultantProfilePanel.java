@@ -1,6 +1,6 @@
 package fitwell.ui.pro.consultant;
 
-import fitwell.control.AuthenticationService;
+import fitwell.service.auth.AuthenticationService;
 import fitwell.domain.user.Consultant;
 import fitwell.persistence.api.ConsultantRepository;
 import fitwell.persistence.jdbc.JdbcConsultantRepository;

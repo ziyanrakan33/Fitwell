@@ -1,4 +1,4 @@
-package fitwell.control;
+package fitwell.controller;
 
 import fitwell.domain.equipment.ClassEquipmentAssignment;
 import fitwell.domain.equipment.Equipment;

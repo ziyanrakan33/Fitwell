@@ -1,6 +1,6 @@
 package fitwell.ui.pro.trainee;
 
-import fitwell.control.AuthenticationService;
+import fitwell.service.auth.AuthenticationService;
 import fitwell.control.FitWellServiceRegistry;
 import fitwell.ui.pro.AppShellFrame;
 import fitwell.ui.pro.components.SidebarButton;
@@ -29,7 +29,7 @@ public class TraineeDashboardPanel extends JPanel {
 
     private final FitWellServiceRegistry services = FitWellServiceRegistry.getInstance();
     private final TraineeClassRegistrationPanel traineeClassRegistrationPanel =
-            new TraineeClassRegistrationPanel(services.trainingClassQueryService(), services.traineeProfileService(), new fitwell.control.RegistrationController());
+            new TraineeClassRegistrationPanel(services.trainingClassQueryService(), services.traineeProfileService(), new fitwell.controller.RegistrationController());
     private final TrainingPlanPanel trainingPlanPanel =
             new TrainingPlanPanel(services.trainingPlanService(), services.traineeProfileService());
     private final TraineeProfilePanel traineeProfilePanel =

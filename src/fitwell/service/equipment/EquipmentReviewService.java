@@ -1,4 +1,4 @@
-package fitwell.control;
+package fitwell.service.equipment;
 
 import fitwell.domain.equipment.Equipment;
 import fitwell.domain.equipment.EquipmentCategory;
