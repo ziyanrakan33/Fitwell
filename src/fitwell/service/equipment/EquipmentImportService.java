@@ -7,9 +7,9 @@ import fitwell.domain.equipment.EquipmentStatus;
 import fitwell.domain.equipment.EquipmentUpdate;
 import fitwell.domain.equipment.EquipmentBatch;
 import fitwell.domain.reports.ExtractionResult;
-import fitwell.integration.ImageExtractionService;
-import fitwell.integration.NotificationGateway;
-import fitwell.integration.SwiftFitGateway;
+import fitwell.integration.ai.ImageExtractionService;
+import fitwell.integration.notification.NotificationGateway;
+import fitwell.integration.swiftfit.SwiftFitGateway;
 import fitwell.persistence.api.EquipmentRepository;
 import fitwell.util.SimpleJsonParser;
 

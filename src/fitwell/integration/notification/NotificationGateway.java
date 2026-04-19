@@ -1,4 +1,4 @@
-package fitwell.integration;
+package fitwell.integration.notification;
 
 import javax.swing.JOptionPane;
 

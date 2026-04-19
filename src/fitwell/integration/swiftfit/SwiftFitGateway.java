@@ -1,4 +1,4 @@
-package fitwell.integration;
+package fitwell.integration.swiftfit;
 
 public class SwiftFitGateway {
     public void receiveMonthlyEquipmentUpdates(String json) {

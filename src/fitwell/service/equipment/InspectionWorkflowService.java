@@ -8,7 +8,7 @@ import fitwell.domain.equipment.EquipmentInspection;
 import fitwell.domain.equipment.InspectionSeverity;
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingClassStatus;
-import fitwell.integration.NotificationGateway;
+import fitwell.integration.notification.NotificationGateway;
 import fitwell.persistence.api.ClassEquipmentAssignmentRepository;
 import fitwell.persistence.api.EquipmentAssignmentRepository;
 import fitwell.persistence.api.EquipmentInspectionRepository;

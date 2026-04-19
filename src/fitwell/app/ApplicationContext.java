@@ -1,9 +1,9 @@
 package fitwell.app;
 
 import fitwell.persistence.db.Db;
-import fitwell.integration.ImageExtractionService;
-import fitwell.integration.NotificationGateway;
-import fitwell.integration.SwiftFitGateway;
+import fitwell.integration.ai.ImageExtractionService;
+import fitwell.integration.notification.NotificationGateway;
+import fitwell.integration.swiftfit.SwiftFitGateway;
 import fitwell.persistence.api.AttendanceRepository;
 import fitwell.persistence.api.ClassEquipmentAssignmentRepository;
 import fitwell.persistence.api.EmergencyAlertRepository;

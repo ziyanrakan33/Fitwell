@@ -3,7 +3,7 @@ import fitwell.service.training.TrainingClassService;
 
 import java.util.List;
 
-import fitwell.integration.SwiftFitGateway;
+import fitwell.integration.swiftfit.SwiftFitGateway;
 import fitwell.domain.equipment.ClassEquipmentAssignment;
 import fitwell.domain.equipment.Equipment;
 import fitwell.domain.training.TrainingClass;
@@ -32,7 +32,7 @@ public class InventoryReportController {
         this.swiftFitGateway = swiftFitGateway;
     }
 
-    public InventoryReportController(EquipmentRepository repo, fitwell.integration.SwiftFitGateway ignoredGateway) {
+    public InventoryReportController(EquipmentRepository repo, fitwell.integration.swiftfit.SwiftFitGateway ignoredGateway) {
         this(repo, new JdbcClassEquipmentAssignmentRepository(),
                 new TrainingClassService(new JdbcTrainingClassRepository(), new InMemoryTrainingClassRuntimeStateRepository()),
                 new SwiftFitGateway());

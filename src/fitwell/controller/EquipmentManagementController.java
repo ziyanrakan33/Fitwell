@@ -2,8 +2,8 @@ package fitwell.controller;
 
 import java.time.LocalDateTime;
 
-import fitwell.integration.ImageExtractionService;
-import fitwell.integration.NotificationGateway;
+import fitwell.integration.ai.ImageExtractionService;
+import fitwell.integration.notification.NotificationGateway;
 import fitwell.domain.equipment.Equipment;
 import fitwell.domain.equipment.EquipmentBatch;
 import fitwell.domain.equipment.EquipmentCategory;

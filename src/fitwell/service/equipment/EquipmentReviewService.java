@@ -4,7 +4,7 @@ import fitwell.domain.equipment.Equipment;
 import fitwell.domain.equipment.EquipmentCategory;
 import fitwell.domain.equipment.EquipmentInspection;
 import fitwell.domain.equipment.EquipmentStatus;
-import fitwell.integration.NotificationGateway;
+import fitwell.integration.notification.NotificationGateway;
 import fitwell.persistence.api.EquipmentInspectionRepository;
 import fitwell.persistence.api.EquipmentRepository;
 

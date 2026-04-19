@@ -1,4 +1,4 @@
-package fitwell.integration;
+package fitwell.integration.ai;
 
 import fitwell.domain.equipment.EquipmentCategory;
 import fitwell.domain.reports.ExtractionResult;
