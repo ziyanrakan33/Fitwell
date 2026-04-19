@@ -1,13 +1,14 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
-import fitwell.db.Db;
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingClassStatus;
+import fitwell.persistence.api.TrainingClassRepository;
+import fitwell.persistence.db.Db;
 
 import java.sql.*;
 import java.util.*;
 
-public class TrainingClassRepository {
+public class JdbcTrainingClassRepository implements TrainingClassRepository {
 
     public TrainingClass findById(int classId) {
         String sql = "SELECT classID, name, startTime, endTime, type, maxParticipants, consultantID FROM TblTrainingClass WHERE classID=?";
@@ -15,9 +16,7 @@ public class TrainingClassRepository {
              PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, classId);
             try (ResultSet rs = ps.executeQuery()) {
-                if (!rs.next()) {
-                    return null;
-                }
+                if (!rs.next()) return null;
                 Timestamp st = rs.getTimestamp("startTime");
                 Timestamp et = rs.getTimestamp("endTime");
                 return new TrainingClass(
@@ -43,22 +42,16 @@ public class TrainingClassRepository {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Integer id = rs.getInt("classID");
-                String name = rs.getString("name");
                 Timestamp st = rs.getTimestamp("startTime");
                 Timestamp et = rs.getTimestamp("endTime");
-                String type = rs.getString("type");
-                int max = rs.getInt("maxParticipants");
-                int cons = rs.getInt("consultantID");
-
                 out.add(new TrainingClass(
-                        id,
-                        name,
+                        rs.getInt("classID"),
+                        rs.getString("name"),
                         st == null ? null : st.toLocalDateTime(),
                         et == null ? null : et.toLocalDateTime(),
-                        type,
-                        max,
-                        cons
+                        rs.getString("type"),
+                        rs.getInt("maxParticipants"),
+                        rs.getInt("consultantID")
                 ));
             }
             return out;
@@ -78,13 +71,11 @@ public class TrainingClassRepository {
             ps.setString(4, tc.getType());
             ps.setInt(5, tc.getMaxParticipants());
             ps.setInt(6, tc.getConsultantId());
-
             ps.executeUpdate();
 
             try (ResultSet keys = ps.getGeneratedKeys()) {
                 if (keys.next()) return keys.getInt(1);
             }
-            // UCanAccess sometimes doesn’t return keys reliably:
             return findLastInsertedId();
         } catch (Exception ex) {
             throw new RuntimeException("DB insert class failed", ex);
@@ -112,7 +103,6 @@ public class TrainingClassRepository {
             ps.setInt(5, tc.getMaxParticipants());
             ps.setInt(6, tc.getConsultantId());
             ps.setInt(7, tc.getClassId());
-
             ps.executeUpdate();
         } catch (Exception ex) {
             throw new RuntimeException("DB update class failed", ex);
@@ -149,7 +139,6 @@ public class TrainingClassRepository {
     }
 
     public void delete(int classId) {
-        // Delete registrations first to avoid FK constraint violation
         String delRegs = "DELETE FROM TblClassRegistration WHERE classID=?";
         String delClass = "DELETE FROM TblTrainingClass WHERE classID=?";
 

@@ -2,7 +2,7 @@ package fitwell.control;
 
 import fitwell.domain.shared.PreferredUpdateMethod;
 import fitwell.domain.user.Trainee;
-import fitwell.repo.TraineeRepository;
+import fitwell.persistence.api.TraineeRepository;
 
 import java.util.List;
 

@@ -10,7 +10,7 @@ import fitwell.domain.reports.ExtractionResult;
 import fitwell.integration.ImageExtractionService;
 import fitwell.integration.NotificationGateway;
 import fitwell.integration.SwiftFitGateway;
-import fitwell.repo.EquipmentRepository;
+import fitwell.persistence.api.EquipmentRepository;
 import fitwell.util.SimpleJsonParser;
 
 import java.time.LocalDateTime;

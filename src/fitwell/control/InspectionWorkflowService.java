@@ -8,9 +8,9 @@ import fitwell.domain.equipment.InspectionSeverity;
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingClassStatus;
 import fitwell.integration.NotificationGateway;
-import fitwell.repo.ClassEquipmentAssignmentRepository;
-import fitwell.repo.EquipmentAssignmentRepository;
-import fitwell.repo.EquipmentInspectionRepository;
+import fitwell.persistence.api.ClassEquipmentAssignmentRepository;
+import fitwell.persistence.api.EquipmentAssignmentRepository;
+import fitwell.persistence.api.EquipmentInspectionRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

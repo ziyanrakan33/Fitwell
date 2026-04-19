@@ -1,12 +1,14 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
 import fitwell.domain.equipment.EquipmentInspection;
+import fitwell.persistence.api.EquipmentInspectionRepository;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class EquipmentInspectionRepository {
+public class InMemoryEquipmentInspectionRepository implements EquipmentInspectionRepository {
+
     private static final List<EquipmentInspection> INSPECTIONS = new ArrayList<>();
     private static int nextInspectionId = 1;
 
@@ -32,7 +34,7 @@ public class EquipmentInspectionRepository {
 
     public List<EquipmentInspection> findOpenInspections() {
         return INSPECTIONS.stream()
-                .filter(inspection -> !inspection.isResolved())
+                .filter(i -> !i.isResolved())
                 .sorted(Comparator.comparing(EquipmentInspection::getInspectionTime).reversed())
                 .toList();
     }

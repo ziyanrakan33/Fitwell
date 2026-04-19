@@ -1,17 +1,14 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
 import fitwell.domain.equipment.EquipmentAssignment;
+import fitwell.persistence.api.EquipmentAssignmentRepository;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Repository for equipment-class assignments.
- * Uses a ConnectionProvider to obtain database connections.
- */
-public class EquipmentAssignmentRepository {
+public class JdbcEquipmentAssignmentRepository implements EquipmentAssignmentRepository {
 
     public interface ConnectionProvider {
         Connection getConnection() throws SQLException;
@@ -19,7 +16,7 @@ public class EquipmentAssignmentRepository {
 
     private final ConnectionProvider connectionProvider;
 
-    public EquipmentAssignmentRepository(ConnectionProvider connectionProvider) {
+    public JdbcEquipmentAssignmentRepository(ConnectionProvider connectionProvider) {
         this.connectionProvider = connectionProvider;
     }
 
@@ -34,19 +31,13 @@ public class EquipmentAssignmentRepository {
             ps.setInt(1, a.getClassId());
             ps.setString(2, a.getEquipmentSerial());
             ps.setInt(3, a.getQtyAssigned());
-
-            if (a.getAssignedAt() != null) {
-                ps.setTimestamp(4, Timestamp.valueOf(a.getAssignedAt()));
-            } else {
-                ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
-            }
-
+            ps.setTimestamp(4, a.getAssignedAt() != null
+                    ? Timestamp.valueOf(a.getAssignedAt())
+                    : Timestamp.valueOf(LocalDateTime.now()));
             if (a.getAssignedByConsultantId() == null) ps.setNull(5, Types.INTEGER);
             else ps.setInt(5, a.getAssignedByConsultantId());
-
             ps.setString(6, a.getNotes());
             ps.setBoolean(7, a.isActive());
-
             ps.executeUpdate();
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -63,7 +54,6 @@ public class EquipmentAssignmentRepository {
     public List<EquipmentAssignment> findActiveByClassId(int classId) throws SQLException {
         String sql = "SELECT * FROM EquipmentAssignments WHERE class_id=? AND is_active=true ORDER BY assignment_id";
         List<EquipmentAssignment> out = new ArrayList<>();
-
         try (Connection con = connectionProvider.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, classId);
@@ -77,7 +67,6 @@ public class EquipmentAssignmentRepository {
     public List<EquipmentAssignment> findActiveByEquipmentSerial(String serial) throws SQLException {
         String sql = "SELECT * FROM EquipmentAssignments WHERE equipment_serial=? AND is_active=true ORDER BY assignment_id";
         List<EquipmentAssignment> out = new ArrayList<>();
-
         try (Connection con = connectionProvider.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, serial);
@@ -120,13 +109,10 @@ public class EquipmentAssignmentRepository {
         a.setClassId(rs.getInt("class_id"));
         a.setEquipmentSerial(rs.getString("equipment_serial"));
         a.setQtyAssigned(rs.getInt("qty_assigned"));
-
         Timestamp ts = rs.getTimestamp("assigned_at");
         if (ts != null) a.setAssignedAt(ts.toLocalDateTime());
-
         int consultantId = rs.getInt("assigned_by_consultant_id");
         if (!rs.wasNull()) a.setAssignedByConsultantId(consultantId);
-
         a.setNotes(rs.getString("notes"));
         a.setActive(rs.getBoolean("is_active"));
         return a;

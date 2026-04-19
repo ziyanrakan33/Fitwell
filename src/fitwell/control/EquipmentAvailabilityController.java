@@ -4,9 +4,9 @@ import fitwell.domain.equipment.ClassEquipmentAssignment;
 import fitwell.domain.equipment.Equipment;
 import fitwell.domain.equipment.EquipmentStatus;
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.ClassEquipmentAssignmentRepository;
-import fitwell.repo.EquipmentRepository;
-import fitwell.repo.TrainingClassRepository;
+import fitwell.persistence.api.ClassEquipmentAssignmentRepository;
+import fitwell.persistence.api.EquipmentRepository;
+import fitwell.persistence.api.TrainingClassRepository;
 
 import java.time.LocalDateTime;
 import java.util.*;

@@ -1,8 +1,8 @@
 package fitwell.control;
 
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.RegistrationRepository;
-import fitwell.repo.TrainingClassRepository;
+import fitwell.persistence.api.RegistrationRepository;
+import fitwell.persistence.api.TrainingClassRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;

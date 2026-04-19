@@ -5,9 +5,11 @@ import javax.swing.UIManager;
 
 import java.awt.Color;
 
-import fitwell.db.DbMigration;
-import fitwell.repo.ConsultantRepository;
-import fitwell.repo.TraineeRepository;
+import fitwell.persistence.db.DbMigration;
+import fitwell.persistence.api.ConsultantRepository;
+import fitwell.persistence.jdbc.JdbcConsultantRepository;
+import fitwell.persistence.jdbc.JdbcTraineeRepository;
+import fitwell.persistence.api.TraineeRepository;
 import fitwell.ui.pro.AppShellFrame;
 
 public class App {
@@ -22,8 +24,8 @@ public class App {
     }
 
     private static void initDatabase() {
-        ConsultantRepository consultantRepo = new ConsultantRepository();
-        TraineeRepository traineeRepo = new TraineeRepository();
+        ConsultantRepository consultantRepo = new JdbcConsultantRepository();
+        TraineeRepository traineeRepo = new JdbcTraineeRepository();
 
         consultantRepo.ensurePasswordColumn();
         consultantRepo.ensureApprovedColumn();

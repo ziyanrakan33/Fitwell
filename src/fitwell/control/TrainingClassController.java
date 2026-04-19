@@ -1,15 +1,16 @@
 package fitwell.control;
 
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.TrainingClassRepository;
-import fitwell.repo.TrainingClassRuntimeStateRepository;
+import fitwell.persistence.api.TrainingClassRepository;
+import fitwell.persistence.api.TrainingClassRuntimeStateRepository;
+import fitwell.persistence.jdbc.InMemoryTrainingClassRuntimeStateRepository;
 
 public class TrainingClassController {
 
     private final TrainingClassService service;
 
     public TrainingClassController(TrainingClassRepository repo) {
-        this.service = new TrainingClassService(repo, new TrainingClassRuntimeStateRepository());
+        this.service = new TrainingClassService(repo, new InMemoryTrainingClassRuntimeStateRepository());
     }
 
     public void add(TrainingClass tc) {

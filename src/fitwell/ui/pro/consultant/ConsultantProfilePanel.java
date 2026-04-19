@@ -2,7 +2,8 @@ package fitwell.ui.pro.consultant;
 
 import fitwell.control.AuthenticationService;
 import fitwell.domain.user.Consultant;
-import fitwell.repo.ConsultantRepository;
+import fitwell.persistence.api.ConsultantRepository;
+import fitwell.persistence.jdbc.JdbcConsultantRepository;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 
@@ -10,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ConsultantProfilePanel extends JPanel {
-    private final ConsultantRepository consultantRepo = new ConsultantRepository();
+    private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
 
     private final JTextField firstNameField = new JTextField();
     private final JTextField lastNameField = new JTextField();

@@ -4,8 +4,9 @@ import fitwell.control.FitWellServiceRegistry;
 import fitwell.control.TrainingClassService;
 import fitwell.domain.user.Consultant;
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.ConsultantRepository;
-import fitwell.repo.TrainingClassRepository;
+import fitwell.persistence.api.ConsultantRepository;
+import fitwell.persistence.jdbc.JdbcConsultantRepository;
+import fitwell.persistence.api.TrainingClassRepository;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class ClassFormProDialog extends JDialog {
 
-    private final ConsultantRepository consultantRepo = new ConsultantRepository();
+    private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
     private final TrainingClass editingClass; // null => add mode
     private boolean saved = false;
 

@@ -1,13 +1,14 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
-import fitwell.db.Db;
 import fitwell.domain.user.Consultant;
 import fitwell.domain.user.ConsultantRole;
+import fitwell.persistence.api.ConsultantRepository;
+import fitwell.persistence.db.Db;
 
 import java.sql.*;
 import java.util.*;
 
-public class ConsultantRepository {
+public class JdbcConsultantRepository implements ConsultantRepository {
 
     public List<Consultant> findAll() {
         String sql = "SELECT ID, firstName, lastName, phone, email, password, approved, \"role\" FROM TblConsultant ORDER BY ID";

@@ -11,7 +11,7 @@ import fitwell.domain.equipment.EquipmentLocation;
 import fitwell.domain.equipment.EquipmentStatus;
 import fitwell.domain.equipment.EquipmentUpdate;
 import fitwell.domain.reports.ExtractionResult;
-import fitwell.repo.EquipmentRepository;
+import fitwell.persistence.api.EquipmentRepository;
 import fitwell.util.SimpleJsonParser;
 
 public class EquipmentManagementController {

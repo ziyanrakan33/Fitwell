@@ -4,7 +4,8 @@ import fitwell.control.EquipmentAssignmentController;
 import fitwell.control.FitWellServiceRegistry;
 import fitwell.domain.equipment.Equipment;
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.ConsultantRepository;
+import fitwell.persistence.api.ConsultantRepository;
+import fitwell.persistence.jdbc.JdbcConsultantRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +32,7 @@ public class AssignRandomEquipment {
         
         // Find a consultant ID to use for assigning
         int consultantId = 1;
-        var consultants = new ConsultantRepository().findAll();
+        var consultants = new JdbcConsultantRepository().findAll();
         if (!consultants.isEmpty()) {
             consultantId = consultants.get(0).getId();
         }

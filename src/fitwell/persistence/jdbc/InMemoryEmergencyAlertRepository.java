@@ -1,8 +1,10 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
 import fitwell.domain.emergency.EmergencyAlert;
+import fitwell.persistence.api.EmergencyAlertRepository;
 
-public class EmergencyAlertRepository {
+public class InMemoryEmergencyAlertRepository implements EmergencyAlertRepository {
+
     private static EmergencyAlert currentAlert;
     private static int nextId = 1;
 

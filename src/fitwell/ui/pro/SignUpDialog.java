@@ -5,8 +5,10 @@ import fitwell.domain.user.Consultant;
 import fitwell.domain.user.ConsultantRole;
 import fitwell.domain.shared.PreferredUpdateMethod;
 import fitwell.domain.user.Trainee;
-import fitwell.repo.ConsultantRepository;
-import fitwell.repo.TraineeRepository;
+import fitwell.persistence.api.ConsultantRepository;
+import fitwell.persistence.jdbc.JdbcConsultantRepository;
+import fitwell.persistence.api.TraineeRepository;
+import fitwell.persistence.jdbc.JdbcTraineeRepository;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 
@@ -32,8 +34,8 @@ public class SignUpDialog extends JDialog {
     private final JLabel errorLabel = new JLabel(" ");
     private boolean signedUp = false;
 
-    private final ConsultantRepository consultantRepo = new ConsultantRepository();
-    private final TraineeRepository traineeRepo = new TraineeRepository();
+    private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
+    private final TraineeRepository traineeRepo = new JdbcTraineeRepository();
 
     public SignUpDialog(Window owner, String role) {
         super(owner, "Sign Up — " + capitalize(role), ModalityType.APPLICATION_MODAL);

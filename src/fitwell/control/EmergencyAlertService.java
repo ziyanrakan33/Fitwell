@@ -4,8 +4,8 @@ import fitwell.domain.emergency.EmergencyAlert;
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingClassStatus;
 import fitwell.integration.NotificationGateway;
-import fitwell.repo.EmergencyAlertRepository;
-import fitwell.repo.TrainingClassRuntimeStateRepository;
+import fitwell.persistence.api.EmergencyAlertRepository;
+import fitwell.persistence.api.TrainingClassRuntimeStateRepository;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;

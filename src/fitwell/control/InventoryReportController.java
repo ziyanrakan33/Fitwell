@@ -6,9 +6,12 @@ import fitwell.integration.SwiftFitGateway;
 import fitwell.domain.equipment.ClassEquipmentAssignment;
 import fitwell.domain.equipment.Equipment;
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.ClassEquipmentAssignmentRepository;
-import fitwell.repo.EquipmentRepository;
-import fitwell.repo.TrainingClassRuntimeStateRepository;
+import fitwell.persistence.api.ClassEquipmentAssignmentRepository;
+import fitwell.persistence.jdbc.InMemoryTrainingClassRuntimeStateRepository;
+import fitwell.persistence.jdbc.JdbcClassEquipmentAssignmentRepository;
+import fitwell.persistence.jdbc.JdbcTrainingClassRepository;
+import fitwell.persistence.api.EquipmentRepository;
+import fitwell.persistence.api.TrainingClassRuntimeStateRepository;
 import fitwell.util.XmlUtil;
 
 public class InventoryReportController {
@@ -29,8 +32,8 @@ public class InventoryReportController {
     }
 
     public InventoryReportController(EquipmentRepository repo, fitwell.integration.SwiftFitGateway ignoredGateway) {
-        this(repo, new ClassEquipmentAssignmentRepository(),
-                new TrainingClassService(new fitwell.repo.TrainingClassRepository(), new TrainingClassRuntimeStateRepository()),
+        this(repo, new JdbcClassEquipmentAssignmentRepository(),
+                new TrainingClassService(new JdbcTrainingClassRepository(), new InMemoryTrainingClassRuntimeStateRepository()),
                 new SwiftFitGateway());
     }
 

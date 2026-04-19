@@ -1,25 +1,22 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
-import fitwell.db.Db;
 import fitwell.domain.equipment.ClassEquipmentAssignment;
+import fitwell.persistence.api.ClassEquipmentAssignmentRepository;
+import fitwell.persistence.db.Db;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassEquipmentAssignmentRepository {
+public class JdbcClassEquipmentAssignmentRepository implements ClassEquipmentAssignmentRepository {
 
     public List<ClassEquipmentAssignment> findAll() {
         List<ClassEquipmentAssignment> out = new ArrayList<>();
         String sql = "SELECT AssignmentID, ClassID, SerialNumber, RequiredQuantity, Notes FROM ClassEquipmentAssignment";
-
         try (Connection c = Db.getConnection();
              PreparedStatement ps = c.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                out.add(map(rs));
-            }
+            while (rs.next()) out.add(map(rs));
         } catch (Exception ex) {
             throw new RuntimeException("Failed to load class-equipment assignments: " + ex.getMessage(), ex);
         }
@@ -30,16 +27,12 @@ public class ClassEquipmentAssignmentRepository {
         List<ClassEquipmentAssignment> out = new ArrayList<>();
         String sql = "SELECT AssignmentID, ClassID, SerialNumber, RequiredQuantity, Notes " +
                      "FROM ClassEquipmentAssignment WHERE ClassID=?";
-
         try (Connection c = Db.getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
-
             ps.setInt(1, classId);
-
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) out.add(map(rs));
             }
-
         } catch (Exception ex) {
             throw new RuntimeException("Failed to load assignments for class " + classId + ": " + ex.getMessage(), ex);
         }
@@ -48,20 +41,14 @@ public class ClassEquipmentAssignmentRepository {
 
     public void insert(ClassEquipmentAssignment a) {
         validate(a);
-
-        String sql = "INSERT INTO ClassEquipmentAssignment (ClassID, SerialNumber, RequiredQuantity, Notes) " +
-                     "VALUES (?, ?, ?, ?)";
-
+        String sql = "INSERT INTO ClassEquipmentAssignment (ClassID, SerialNumber, RequiredQuantity, Notes) VALUES (?, ?, ?, ?)";
         try (Connection c = Db.getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
-
             ps.setInt(1, a.getClassId());
             ps.setString(2, a.getSerialNumber());
             ps.setInt(3, a.getRequiredQuantity());
             ps.setString(4, a.getNotes());
-
             ps.executeUpdate();
-
         } catch (Exception ex) {
             throw new RuntimeException("Failed to insert class-equipment assignment: " + ex.getMessage(), ex);
         }
@@ -69,38 +56,29 @@ public class ClassEquipmentAssignmentRepository {
 
     public void deleteByClassId(int classId) {
         String sql = "DELETE FROM ClassEquipmentAssignment WHERE ClassID=?";
-
         try (Connection c = Db.getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
-
             ps.setInt(1, classId);
             ps.executeUpdate();
-
         } catch (Exception ex) {
             throw new RuntimeException("Failed to delete assignments for class " + classId + ": " + ex.getMessage(), ex);
         }
     }
 
-    /**
-     * Replaces all equipment assignments for a class in one transaction.
-     */
     public void replaceForClass(int classId, List<ClassEquipmentAssignment> assignments) {
         if (classId <= 0) throw new IllegalArgumentException("classId must be > 0");
         if (assignments == null) assignments = new ArrayList<>();
 
         try (Connection c = Db.getConnection()) {
             c.setAutoCommit(false);
-
             try {
                 try (PreparedStatement del = c.prepareStatement(
                         "DELETE FROM ClassEquipmentAssignment WHERE ClassID=?")) {
                     del.setInt(1, classId);
                     del.executeUpdate();
                 }
-
                 try (PreparedStatement ins = c.prepareStatement(
                         "INSERT INTO ClassEquipmentAssignment (ClassID, SerialNumber, RequiredQuantity, Notes) VALUES (?, ?, ?, ?)")) {
-
                     for (ClassEquipmentAssignment a : assignments) {
                         validate(a);
                         ins.setInt(1, classId);
@@ -111,7 +89,6 @@ public class ClassEquipmentAssignmentRepository {
                     }
                     ins.executeBatch();
                 }
-
                 c.commit();
             } catch (Exception ex) {
                 c.rollback();
@@ -119,7 +96,6 @@ public class ClassEquipmentAssignmentRepository {
             } finally {
                 c.setAutoCommit(true);
             }
-
         } catch (Exception ex) {
             throw new RuntimeException("Failed to replace class-equipment assignments: " + ex.getMessage(), ex);
         }

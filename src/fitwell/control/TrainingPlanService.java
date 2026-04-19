@@ -4,9 +4,9 @@ import fitwell.domain.training.GroupPlan;
 import fitwell.domain.training.Plan;
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingPlanMember;
-import fitwell.repo.PlanClassRepository;
-import fitwell.repo.PlanMemberRepository;
-import fitwell.repo.TrainingPlanRepository;
+import fitwell.persistence.api.PlanClassRepository;
+import fitwell.persistence.api.PlanMemberRepository;
+import fitwell.persistence.api.TrainingPlanRepository;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

@@ -1,29 +1,13 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
 import fitwell.domain.registration.AttendanceStatus;
+import fitwell.persistence.api.AttendanceRepository;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AttendanceRepository {
-    public static class AttendanceRecord {
-        private final AttendanceStatus status;
-        private final LocalDateTime markedAt;
-
-        public AttendanceRecord(AttendanceStatus status, LocalDateTime markedAt) {
-            this.status = status;
-            this.markedAt = markedAt;
-        }
-
-        public AttendanceStatus getStatus() {
-            return status;
-        }
-
-        public LocalDateTime getMarkedAt() {
-            return markedAt;
-        }
-    }
+public class InMemoryAttendanceRepository implements AttendanceRepository {
 
     private static final Map<String, AttendanceRecord> ATTENDANCE = new HashMap<>();
 

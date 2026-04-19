@@ -5,9 +5,9 @@ import fitwell.domain.registration.ClassRegistration;
 import fitwell.domain.reports.LowAttendanceRecord;
 import fitwell.domain.user.Trainee;
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.AttendanceRepository;
-import fitwell.repo.RegistrationRepository;
-import fitwell.repo.TraineeRepository;
+import fitwell.persistence.api.AttendanceRepository;
+import fitwell.persistence.api.RegistrationRepository;
+import fitwell.persistence.api.TraineeRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

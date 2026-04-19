@@ -12,7 +12,8 @@ import fitwell.domain.equipment.Equipment;
 import fitwell.domain.equipment.EquipmentInspection;
 import fitwell.domain.equipment.InspectionSeverity;
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.ConsultantRepository;
+import fitwell.persistence.api.ConsultantRepository;
+import fitwell.persistence.jdbc.JdbcConsultantRepository;
 import fitwell.ui.pro.AppShellFrame;
 import fitwell.ui.pro.components.SidebarButton;
 import fitwell.ui.pro.components.StatCard;
@@ -80,7 +81,7 @@ public class ConsultantDashboardPanel extends JPanel {
     private final JTable inspectionTable = new JTable(inspectionTableModel);
     private final JTextArea importResultArea = new JTextArea("No SwiftFit import executed yet.");
 
-    private final ConsultantRepository consultantRepo = new ConsultantRepository();
+    private final ConsultantRepository consultantRepo = new JdbcConsultantRepository();
     private final DefaultTableModel approvalsModel = new DefaultTableModel(
             new Object[]{"ID", "Name", "Email", "Phone"}, 0) {
         @Override

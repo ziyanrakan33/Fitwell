@@ -2,7 +2,7 @@ package fitwell.control;
 
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingClassStatus;
-import fitwell.repo.RegistrationRepository;
+import fitwell.persistence.api.RegistrationRepository;
 
 import java.time.LocalDateTime;
 

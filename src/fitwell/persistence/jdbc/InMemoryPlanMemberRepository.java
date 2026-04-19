@@ -1,11 +1,13 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
 import fitwell.domain.training.TrainingPlanMember;
+import fitwell.persistence.api.PlanMemberRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlanMemberRepository {
+public class InMemoryPlanMemberRepository implements PlanMemberRepository {
+
     private static final List<TrainingPlanMember> MEMBERS = new ArrayList<>();
 
     static {
@@ -18,9 +20,7 @@ public class PlanMemberRepository {
     public List<TrainingPlanMember> findByPlanId(int planId) {
         List<TrainingPlanMember> result = new ArrayList<>();
         for (TrainingPlanMember member : MEMBERS) {
-            if (member.getPlanId() == planId) {
-                result.add(member);
-            }
+            if (member.getPlanId() == planId) result.add(member);
         }
         return result;
     }
@@ -28,18 +28,13 @@ public class PlanMemberRepository {
     public List<TrainingPlanMember> findByTraineeId(int traineeId) {
         List<TrainingPlanMember> result = new ArrayList<>();
         for (TrainingPlanMember member : MEMBERS) {
-            if (member.getTraineeId() == traineeId) {
-                result.add(member);
-            }
+            if (member.getTraineeId() == traineeId) result.add(member);
         }
         return result;
     }
 
     public synchronized void addMember(TrainingPlanMember member) {
-        if (member == null) {
-            return;
-        }
-        MEMBERS.add(member);
+        if (member != null) MEMBERS.add(member);
     }
 
     public synchronized void removeMember(int planId, int traineeId) {

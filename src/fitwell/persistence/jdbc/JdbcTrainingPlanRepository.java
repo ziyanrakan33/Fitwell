@@ -1,21 +1,18 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
-import fitwell.db.Db;
 import fitwell.domain.training.GroupPlan;
 import fitwell.domain.training.PersonalPlan;
 import fitwell.domain.training.Plan;
 import fitwell.domain.training.PlanStatus;
+import fitwell.persistence.api.TrainingPlanRepository;
+import fitwell.persistence.db.Db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrainingPlanRepository {
+public class JdbcTrainingPlanRepository implements TrainingPlanRepository {
 
     public List<Plan> findAll() {
         List<Plan> out = new ArrayList<>();
@@ -28,28 +25,21 @@ public class TrainingPlanRepository {
     private List<Plan> findAllPersonal() {
         List<Plan> out = new ArrayList<>();
         String sql = "SELECT p.planID, p.startDate, p.duration, p.status, p.dietaryRestrictions, t.traineeID " +
-                     "FROM TblPersonalPlan p " +
-                     "LEFT JOIN TblTraineePlan t ON p.planID = t.planID";
+                     "FROM TblPersonalPlan p LEFT JOIN TblTraineePlan t ON p.planID = t.planID";
         try (Connection c = Db.getConnection();
              PreparedStatement ps = c.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 int traineeId = rs.getInt("traineeID");
                 if (rs.wasNull()) traineeId = 0;
-                
                 Timestamp ts = rs.getTimestamp("startDate");
                 LocalDate start = ts == null ? LocalDate.now() : ts.toLocalDateTime().toLocalDate();
-                
                 String durStr = rs.getString("duration");
                 int dur = 1;
                 try { dur = Integer.parseInt(durStr); } catch (Exception ignored) {}
-                
                 String statusStr = rs.getString("status");
                 if (statusStr == null) statusStr = "ACTIVE";
-                
-                String dietary = rs.getString("dietaryRestrictions");
-                
-                out.add(new PersonalPlan(rs.getInt("planID"), traineeId, start, dur, statusStr, dietary));
+                out.add(new PersonalPlan(rs.getInt("planID"), traineeId, start, dur, statusStr, rs.getString("dietaryRestrictions")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,25 +50,20 @@ public class TrainingPlanRepository {
     private List<Plan> findAllGroup() {
         List<Plan> out = new ArrayList<>();
         String sql = "SELECT p.planID, p.startDate, p.duration, p.status, p.ageRange, p.preferredClassTypes, p.generalGuidelines, t.traineeID " +
-                     "FROM TblGroupPlan p " +
-                     "LEFT JOIN TblTraineePlan t ON p.planID = t.planID";
+                     "FROM TblGroupPlan p LEFT JOIN TblTraineePlan t ON p.planID = t.planID";
         try (Connection c = Db.getConnection();
              PreparedStatement ps = c.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 int traineeId = rs.getInt("traineeID");
                 if (rs.wasNull()) traineeId = 0;
-                
                 Timestamp ts = rs.getTimestamp("startDate");
                 LocalDate start = ts == null ? LocalDate.now() : ts.toLocalDateTime().toLocalDate();
-                
                 String durStr = rs.getString("duration");
                 int dur = 1;
                 try { dur = Integer.parseInt(durStr); } catch (Exception ignored) {}
-                
                 String statusStr = rs.getString("status");
                 if (statusStr == null) statusStr = "ACTIVE";
-                
                 out.add(new GroupPlan(
                         rs.getInt("planID"), traineeId, start, dur, PlanStatus.fromValue(statusStr),
                         rs.getString("ageRange"), rs.getString("preferredClassTypes"), rs.getString("generalGuidelines")
@@ -92,9 +77,7 @@ public class TrainingPlanRepository {
 
     public Plan findById(int planId) {
         for (Plan plan : findAll()) {
-            if (plan.getPlanId() == planId) {
-                return plan;
-            }
+            if (plan.getPlanId() == planId) return plan;
         }
         return null;
     }
@@ -102,9 +85,7 @@ public class TrainingPlanRepository {
     public List<Plan> findByTraineeId(int traineeId) {
         List<Plan> out = new ArrayList<>();
         for (Plan plan : findAll()) {
-            if (plan.getOwnerTraineeId() == traineeId) {
-                out.add(plan);
-            }
+            if (plan.getOwnerTraineeId() == traineeId) out.add(plan);
         }
         return out;
     }
@@ -125,16 +106,12 @@ public class TrainingPlanRepository {
         try (Connection c = Db.getConnection()) {
             c.setAutoCommit(false);
             try {
-                // 1. Get a valid Consultant ID (Required by DB foreign key)
-                int consultantId = 42; // Fallback
+                int consultantId = 42;
                 try (Statement st = c.createStatement();
                      ResultSet rs = st.executeQuery("SELECT TOP 1 ID FROM TblConsultant")) {
-                    if (rs.next()) {
-                        consultantId = rs.getInt(1);
-                    }
+                    if (rs.next()) consultantId = rs.getInt(1);
                 }
 
-                // Insert into TblFitnessPlan
                 String sqlParent = "INSERT INTO TblFitnessPlan (startDate, duration, status, consultantID) VALUES (?,?,?,?)";
                 try (PreparedStatement ps = c.prepareStatement(sqlParent, Statement.RETURN_GENERATED_KEYS)) {
                     ps.setTimestamp(1, plan.getStartDate() != null ? Timestamp.valueOf(plan.getStartDate().atStartOfDay()) : null);
@@ -148,9 +125,7 @@ public class TrainingPlanRepository {
                     if (newId <= 0) {
                         try (Statement stmt = c.createStatement();
                              ResultSet rs = stmt.executeQuery("SELECT @@IDENTITY")) {
-                            if (rs.next()) {
-                                newId = rs.getInt(1);
-                            }
+                            if (rs.next()) newId = rs.getInt(1);
                         }
                     }
                 }
@@ -180,15 +155,13 @@ public class TrainingPlanRepository {
                         ps.executeUpdate();
                     }
                 }
-                
+
                 if (newId != -1 && plan.getOwnerTraineeId() > 0) {
                     saveOwnerMapping(c, newId, plan.getOwnerTraineeId());
                 }
-
                 c.commit();
             } catch (Exception e) {
                 c.rollback();
-                e.printStackTrace();
                 throw new RuntimeException("DB insert plan failed: " + e.getMessage(), e);
             } finally {
                 c.setAutoCommit(true);
@@ -196,7 +169,6 @@ public class TrainingPlanRepository {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        
         return findById(newId != -1 ? newId : plan.getPlanId());
     }
 
@@ -212,7 +184,6 @@ public class TrainingPlanRepository {
                     ps.setInt(4, plan.getPlanId());
                     ps.executeUpdate();
                 }
-
                 if (plan instanceof PersonalPlan) {
                     PersonalPlan p = (PersonalPlan) plan;
                     String sql = "UPDATE TblPersonalPlan SET startDate=?, duration=?, status=?, dietaryRestrictions=? WHERE planID=?";
@@ -241,7 +212,6 @@ public class TrainingPlanRepository {
                 c.commit();
             } catch (Exception e) {
                 c.rollback();
-                e.printStackTrace();
                 throw new RuntimeException("DB update plan failed: " + e.getMessage(), e);
             } finally {
                 c.setAutoCommit(true);

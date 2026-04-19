@@ -1,4 +1,4 @@
-package fitwell.db;
+package fitwell.persistence.db;
 
 import java.sql.Connection;
 import java.sql.Statement;
@@ -23,7 +23,6 @@ public final class DbMigration {
              Statement st = c.createStatement()) {
             st.executeUpdate(sql);
         } catch (Exception ignored) {
-            // column already exists — safe to ignore
         }
     }
 

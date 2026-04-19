@@ -1,45 +1,58 @@
 package fitwell.control;
 
-import fitwell.db.Db;
+import fitwell.persistence.db.Db;
 import fitwell.integration.ImageExtractionService;
 import fitwell.integration.NotificationGateway;
 import fitwell.integration.SwiftFitGateway;
-import fitwell.repo.AttendanceRepository;
-import fitwell.repo.ClassEquipmentAssignmentRepository;
-import fitwell.repo.EmergencyAlertRepository;
-import fitwell.repo.EquipmentAssignmentRepository;
-import fitwell.repo.EquipmentInspectionRepository;
-import fitwell.repo.EquipmentRepository;
-import fitwell.repo.PlanClassRepository;
-import fitwell.repo.PlanMemberRepository;
-import fitwell.repo.RegistrationRepository;
-import fitwell.repo.TraineeRepository;
-import fitwell.repo.TrainingClassRepository;
-import fitwell.repo.TrainingClassRuntimeStateRepository;
-import fitwell.repo.TrainingPlanRepository;
+import fitwell.persistence.api.AttendanceRepository;
+import fitwell.persistence.api.ClassEquipmentAssignmentRepository;
+import fitwell.persistence.api.EmergencyAlertRepository;
+import fitwell.persistence.api.EquipmentAssignmentRepository;
+import fitwell.persistence.api.EquipmentInspectionRepository;
+import fitwell.persistence.api.EquipmentRepository;
+import fitwell.persistence.api.PlanClassRepository;
+import fitwell.persistence.api.PlanMemberRepository;
+import fitwell.persistence.api.RegistrationRepository;
+import fitwell.persistence.api.TraineeRepository;
+import fitwell.persistence.api.TrainingClassRepository;
+import fitwell.persistence.api.TrainingClassRuntimeStateRepository;
+import fitwell.persistence.api.TrainingPlanRepository;
+import fitwell.persistence.jdbc.InMemoryAttendanceRepository;
+import fitwell.persistence.jdbc.InMemoryEmergencyAlertRepository;
+import fitwell.persistence.jdbc.InMemoryEquipmentInspectionRepository;
+import fitwell.persistence.jdbc.InMemoryPlanClassRepository;
+import fitwell.persistence.jdbc.InMemoryPlanMemberRepository;
+import fitwell.persistence.jdbc.InMemoryTrainingClassRuntimeStateRepository;
+import fitwell.persistence.jdbc.JdbcClassEquipmentAssignmentRepository;
+import fitwell.persistence.jdbc.JdbcEquipmentAssignmentRepository;
+import fitwell.persistence.jdbc.JdbcEquipmentRepository;
+import fitwell.persistence.jdbc.JdbcRegistrationRepository;
+import fitwell.persistence.jdbc.JdbcTraineeRepository;
+import fitwell.persistence.jdbc.JdbcTrainingClassRepository;
+import fitwell.persistence.jdbc.JdbcTrainingPlanRepository;
 
 public class FitWellServiceRegistry {
     private static final FitWellServiceRegistry INSTANCE = new FitWellServiceRegistry();
 
-    private final TrainingClassRepository trainingClassRepository = new TrainingClassRepository();
-    private final TrainingClassRuntimeStateRepository trainingClassRuntimeStateRepository = new TrainingClassRuntimeStateRepository();
-    private final RegistrationRepository registrationRepository = new RegistrationRepository();
-    private final TraineeRepository traineeRepository = new TraineeRepository();
-    private final EquipmentRepository equipmentRepository = new EquipmentRepository();
-    private final TrainingPlanRepository trainingPlanRepository = new TrainingPlanRepository();
-    private final PlanMemberRepository planMemberRepository = new PlanMemberRepository();
-    private final AttendanceRepository attendanceRepository = new AttendanceRepository();
-    private final EmergencyAlertRepository emergencyAlertRepository = new EmergencyAlertRepository();
-    private final EquipmentInspectionRepository equipmentInspectionRepository = new EquipmentInspectionRepository();
-    private final EquipmentAssignmentRepository equipmentAssignmentRepository = new EquipmentAssignmentRepository(() -> {
+    private final TrainingClassRepository trainingClassRepository = new JdbcTrainingClassRepository();
+    private final TrainingClassRuntimeStateRepository trainingClassRuntimeStateRepository = new InMemoryTrainingClassRuntimeStateRepository();
+    private final RegistrationRepository registrationRepository = new JdbcRegistrationRepository();
+    private final TraineeRepository traineeRepository = new JdbcTraineeRepository();
+    private final EquipmentRepository equipmentRepository = new JdbcEquipmentRepository();
+    private final TrainingPlanRepository trainingPlanRepository = new JdbcTrainingPlanRepository();
+    private final PlanMemberRepository planMemberRepository = new InMemoryPlanMemberRepository();
+    private final AttendanceRepository attendanceRepository = new InMemoryAttendanceRepository();
+    private final EmergencyAlertRepository emergencyAlertRepository = new InMemoryEmergencyAlertRepository();
+    private final EquipmentInspectionRepository equipmentInspectionRepository = new InMemoryEquipmentInspectionRepository();
+    private final EquipmentAssignmentRepository equipmentAssignmentRepository = new JdbcEquipmentAssignmentRepository(() -> {
         try {
             return Db.getConnection();
         } catch (Exception ex) {
             throw new java.sql.SQLException(ex);
         }
     });
-    private final ClassEquipmentAssignmentRepository classEquipmentAssignmentRepository = new ClassEquipmentAssignmentRepository();
-    private final PlanClassRepository planClassRepository = new PlanClassRepository();
+    private final ClassEquipmentAssignmentRepository classEquipmentAssignmentRepository = new JdbcClassEquipmentAssignmentRepository();
+    private final PlanClassRepository planClassRepository = new InMemoryPlanClassRepository();
 
     private final NotificationGateway notificationGateway = new NotificationGateway();
     private final ImageExtractionService imageExtractionService = new ImageExtractionService();

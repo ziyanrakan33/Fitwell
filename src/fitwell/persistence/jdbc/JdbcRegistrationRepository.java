@@ -1,30 +1,27 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
-import fitwell.db.Db;
 import fitwell.domain.registration.ClassRegistration;
+import fitwell.persistence.api.RegistrationRepository;
+import fitwell.persistence.db.Db;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class RegistrationRepository {
+public class JdbcRegistrationRepository implements RegistrationRepository {
 
     public List<ClassRegistration> findByClassId(int classId) {
         List<ClassRegistration> result = new ArrayList<>();
-        for (ClassRegistration registration : findAll()) {
-            if (registration.getClassId() == classId) {
-                result.add(registration);
-            }
+        for (ClassRegistration r : findAll()) {
+            if (r.getClassId() == classId) result.add(r);
         }
         return result;
     }
 
     public List<ClassRegistration> findByTraineeId(int traineeId) {
         List<ClassRegistration> result = new ArrayList<>();
-        for (ClassRegistration registration : findAll()) {
-            if (registration.getTraineeId() == traineeId) {
-                result.add(registration);
-            }
+        for (ClassRegistration r : findAll()) {
+            if (r.getTraineeId() == traineeId) result.add(r);
         }
         return result;
     }
@@ -103,7 +100,6 @@ public class RegistrationRepository {
         }
     }
 
-    // Returns class IDs with zero registrations in the given year
     public List<Integer> findUnregisteredClassIdsByYear(int year) {
         String sql = """
                 SELECT c.classID

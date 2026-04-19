@@ -1,7 +1,7 @@
 package fitwell.control;
 
 import fitwell.config.AppPaths;
-import fitwell.db.Db;
+import fitwell.persistence.db.Db;
 
 import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;

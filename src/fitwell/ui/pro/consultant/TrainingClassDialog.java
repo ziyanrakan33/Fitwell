@@ -3,7 +3,8 @@ package fitwell.ui.pro.consultant;
 import fitwell.control.TrainingClassService;
 import fitwell.domain.user.Consultant;
 import fitwell.domain.training.TrainingClass;
-import fitwell.repo.ConsultantRepository;
+import fitwell.persistence.api.ConsultantRepository;
+import fitwell.persistence.jdbc.JdbcConsultantRepository;
 import fitwell.ui.pro.theme.FWTheme;
 import fitwell.ui.pro.theme.FWUi;
 
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class TrainingClassDialog extends JDialog {
     private final TrainingClassService trainingClassService;
-    private final ConsultantRepository consultantRepository = new ConsultantRepository();
+    private final ConsultantRepository consultantRepository = new JdbcConsultantRepository();
     private final TrainingClass editingClass;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 

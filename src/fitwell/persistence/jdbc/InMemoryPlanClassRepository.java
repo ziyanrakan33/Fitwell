@@ -1,13 +1,15 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
 import fitwell.domain.training.PlanClassAssignment;
+import fitwell.persistence.api.PlanClassRepository;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PlanClassRepository {
+public class InMemoryPlanClassRepository implements PlanClassRepository {
+
     private static final List<PlanClassAssignment> ASSIGNMENTS = new ArrayList<>();
 
     public void assign(int planId, int classId) {
@@ -21,16 +23,13 @@ public class PlanClassRepository {
     }
 
     public boolean isAssigned(int planId, int classId) {
-        return ASSIGNMENTS.stream()
-                .anyMatch(a -> a.getPlanId() == planId && a.getClassId() == classId);
+        return ASSIGNMENTS.stream().anyMatch(a -> a.getPlanId() == planId && a.getClassId() == classId);
     }
 
     public Set<Integer> findClassIdsByPlanId(int planId) {
         Set<Integer> ids = new LinkedHashSet<>();
         for (PlanClassAssignment a : ASSIGNMENTS) {
-            if (a.getPlanId() == planId) {
-                ids.add(a.getClassId());
-            }
+            if (a.getPlanId() == planId) ids.add(a.getClassId());
         }
         return ids;
     }
@@ -38,9 +37,7 @@ public class PlanClassRepository {
     public Set<Integer> findPlanIdsByClassId(int classId) {
         Set<Integer> ids = new LinkedHashSet<>();
         for (PlanClassAssignment a : ASSIGNMENTS) {
-            if (a.getClassId() == classId) {
-                ids.add(a.getPlanId());
-            }
+            if (a.getClassId() == classId) ids.add(a.getPlanId());
         }
         return ids;
     }

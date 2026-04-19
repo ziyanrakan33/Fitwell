@@ -2,8 +2,8 @@ package fitwell.control;
 
 import fitwell.domain.training.TrainingClass;
 import fitwell.domain.training.TrainingClassStatus;
-import fitwell.repo.TrainingClassRepository;
-import fitwell.repo.TrainingClassRuntimeStateRepository;
+import fitwell.persistence.api.TrainingClassRepository;
+import fitwell.persistence.api.TrainingClassRuntimeStateRepository;
 
 import java.util.ArrayList;
 import java.util.List;

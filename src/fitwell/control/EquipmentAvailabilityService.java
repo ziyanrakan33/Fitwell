@@ -1,7 +1,7 @@
 package fitwell.control;
 
 import fitwell.domain.equipment.EquipmentAssignment;
-import fitwell.repo.EquipmentAssignmentRepository;
+import fitwell.persistence.api.EquipmentAssignmentRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

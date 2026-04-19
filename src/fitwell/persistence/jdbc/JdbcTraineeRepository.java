@@ -1,13 +1,14 @@
-package fitwell.repo;
+package fitwell.persistence.jdbc;
 
-import fitwell.db.Db;
 import fitwell.domain.user.Trainee;
 import fitwell.domain.shared.PreferredUpdateMethod;
+import fitwell.persistence.api.TraineeRepository;
+import fitwell.persistence.db.Db;
 
 import java.sql.*;
 import java.util.*;
 
-public class TraineeRepository {
+public class JdbcTraineeRepository implements TraineeRepository {
 
     public Trainee findById(int traineeId) {
         for (Trainee trainee : findAll()) {
