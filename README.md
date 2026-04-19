@@ -132,4 +132,3 @@ Import SwiftFit equipment updates via `Equipment → Import JSON` using files in
 | Database | MS Access via UCanAccess 5.x |
 | Reports | JasperReports 6.21 |
 | Build | Manual javac (`--release 21`) |
-| AI Integration | Claude API skeleton (Anthropic) |
